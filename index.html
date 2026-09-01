@@ -1,0 +1,1928 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>SmartWaste | Smart Waste Management & Segregation</title>
+
+    <!-- Bootstrap -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@500;600;700;800;900&family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.4/dist/chart.umd.min.js"></script>
+<style id="ir-card-custom-green">
+  /* Direct target on card containing IR Line Sensors */
+  div:has(> * h4:contains("IR Line Sensors")),
+  div:has(> * h3:contains("IR Line Sensors")),
+  .card:has(h4:contains("IR Line Sensors")),
+  .card:has(h3:contains("IR Line Sensors")),
+  div:has(> h4:contains("IR Line Sensors")),
+  div:has(> h3:contains("IR Line Sensors")),
+  div:has(> * :contains("IR Line Sensors")) {
+      background: linear-gradient(145deg, #12874f, #096839) !important;
+      background-color: #0d7a46 !important;
+      border: none !important;
+      border-radius: 28px !important;
+      box-shadow: 0 16px 36px rgba(13, 122, 70, 0.35) !important;
+  }
+
+  /* Force all child texts inside IR card to Bright White */
+  div:has(h4:contains("IR Line Sensors")) *,
+  div:has(h3:contains("IR Line Sensors")) *,
+  .card:has(h4:contains("IR Line Sensors")) * {
+      color: #ffffff !important;
+      -webkit-text-fill-color: #ffffff !important;
+      opacity: 1 !important;
+  }
+
+  /* Subtitle / Category text (NAVIGATION & SENSING) */
+  div:has(h4:contains("IR Line Sensors")) small,
+  div:has(h4:contains("IR Line Sensors")) span,
+  .card:has(h4:contains("IR Line Sensors")) small,
+  .card:has(h4:contains("IR Line Sensors")) span {
+      color: #a7f3d0 !important;
+      -webkit-text-fill-color: #a7f3d0 !important;
+      font-weight: 700 !important;
+  }
+
+  /* Top Icon Container pill */
+  div:has(h4:contains("IR Line Sensors")) i,
+  div:has(h4:contains("IR Line Sensors")) svg {
+      background: rgba(255, 255, 255, 0.18) !important;
+      padding: 10px !important;
+      border-radius: 14px !important;
+      color: #ffffff !important;
+      fill: #ffffff !important;
+  }
+</style>
+<style id="comparison-glow-override">
+  /* 1. Force White Base for all comparison & chart cards */
+  div:has(> * :contains("COMPARISON")),
+  div:has(> :contains("COMPARISON")),
+  .card:has(:contains("COMPARISON")),
+  div:has(canvas),
+  div:has(svg),
+  .chart-card,
+  #features .card,
+  #comparison .card {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      border: 1.5px solid #d1dfcf !important;
+      border-radius: 24px !important;
+      transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease !important;
+  }
+
+  /* 2. HOVER EFFECT: Card stays crisp White, Backside gets Emerald Floating Glow */
+  div:has(> * :contains("COMPARISON")):hover,
+  div:has(> :contains("COMPARISON")):hover,
+  .card:has(:contains("COMPARISON")):hover,
+  div:has(canvas):hover,
+  div:has(svg):hover,
+  .chart-card:hover,
+  #features .card:hover,
+  #comparison .card:hover {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      border-color: #2d6a4f !important;
+      transform: translateY(-8px) scale(1.01) !important;
+      box-shadow: 0 16px 36px rgba(45, 106, 79, 0.22),
+                  0 0 30px rgba(45, 106, 79, 0.18) !important;
+  }
+
+  /* 3. Text & Typography NEVER turn white/invisible */
+  div:has(> * :contains("COMPARISON")):hover h2,
+  div:has(> * :contains("COMPARISON")):hover h3,
+  div:has(> * :contains("COMPARISON")):hover h4,
+  div:has(> * :contains("COMPARISON")):hover h5,
+  .card:has(:contains("COMPARISON")):hover h3,
+  .card:has(:contains("COMPARISON")):hover h4 {
+      color: #1e2a22 !important;
+      -webkit-text-fill-color: #1e2a22 !important;
+  }
+
+  div:has(> * :contains("COMPARISON")):hover p,
+  div:has(> * :contains("COMPARISON")):hover span,
+  div:has(> * :contains("COMPARISON")):hover small,
+  .card:has(:contains("COMPARISON")):hover p {
+      color: #5a6b5e !important;
+      -webkit-text-fill-color: #5a6b5e !important;
+  }
+
+  div:has(> * :contains("COMPARISON")):hover .badge,
+  .card:has(:contains("COMPARISON")):hover .badge {
+      background-color: rgba(45, 106, 79, 0.12) !important;
+      color: #2d6a4f !important;
+      -webkit-text-fill-color: #2d6a4f !important;
+  }
+</style>
+<style id="clean-comparison-hover">
+  /* Base & Hover State for Comparison Cards - Always Clean White */
+  div:has(> * :contains("Segregation Efficiency")),
+  div:has(> * :contains("Manual Effort Reduction")),
+  div:has(> * :contains("COMPARISON 01")),
+  div:has(> * :contains("COMPARISON 02")),
+  .card:has(:contains("Segregation Efficiency")),
+  .card:has(:contains("Manual Effort Reduction")) {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      border: 1.5px solid #d1dfcf !important;
+      transition: transform 0.25s ease, box-shadow 0.25s ease !important;
+  }
+
+  /* Hover State: No Green Color, Clean Floating Shadow Only */
+  div:has(> * :contains("Segregation Efficiency")):hover,
+  div:has(> * :contains("Manual Effort Reduction")):hover,
+  div:has(> * :contains("COMPARISON 01")):hover,
+  div:has(> * :contains("COMPARISON 02")):hover,
+  .card:has(:contains("Segregation Efficiency")):hover,
+  .card:has(:contains("Manual Effort Reduction")):hover {
+      background: #ffffff !important;
+      background-color: #ffffff !important;
+      background-image: none !important;
+      border-color: #c2d4c0 !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 28px rgba(30, 42, 34, 0.08) !important;
+  }
+
+  /* Keep all typography in its original default colors */
+  div:has(> * :contains("Segregation Efficiency")):hover *,
+  div:has(> * :contains("Manual Effort Reduction")):hover * {
+      -webkit-text-fill-color: initial !important;
+  }
+</style>
+<style id="kill-comparison-green-hover">
+  /* Force white background permanently on comparison/graph cards */
+  div:has(> * :contains("Segregation Efficiency")),
+  div:has(> * :contains("Manual Effort Reduction")),
+  div:has(> * :contains("COMPARISON 01")),
+  div:has(> * :contains("COMPARISON 02")),
+  div:has(canvas),
+  div:has(svg),
+  .card:has(:contains("COMPARISON")),
+  .card:has(:contains("Segregation Efficiency")) {
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+      background-image: none !important;
+  }
+
+  /* Disable green background on HOVER */
+  div:has(> * :contains("Segregation Efficiency")):hover,
+  div:has(> * :contains("Manual Effort Reduction")):hover,
+  div:has(> * :contains("COMPARISON 01")):hover,
+  div:has(> * :contains("COMPARISON 02")):hover,
+  div:has(canvas):hover,
+  div:has(svg):hover,
+  .card:has(:contains("COMPARISON")):hover,
+  .card:has(:contains("Segregation Efficiency")):hover {
+      background-color: #ffffff !important;
+      background: #ffffff !important;
+      background-image: none !important;
+      border-color: #c8d8c6 !important;
+      transform: translateY(-4px) !important;
+      box-shadow: 0 12px 28px rgba(30, 42, 34, 0.08) !important;
+  }
+
+  /* Prevent text and labels from turning white/greenish on hover */
+  div:has(> * :contains("Segregation Efficiency")):hover *,
+  div:has(> * :contains("Manual Effort Reduction")):hover * {
+      -webkit-text-fill-color: initial !important;
+  }
+
+  div:has(> * :contains("Segregation Efficiency")):hover h2,
+  div:has(> * :contains("Segregation Efficiency")):hover h3,
+  div:has(> * :contains("Segregation Efficiency")):hover h4,
+  div:has(> * :contains("Manual Effort Reduction")):hover h2,
+  div:has(> * :contains("Manual Effort Reduction")):hover h3,
+  div:has(> * :contains("Manual Effort Reduction")):hover h4 {
+      color: #1e2a22 !important;
+      -webkit-text-fill-color: #1e2a22 !important;
+  }
+
+  div:has(> * :contains("Segregation Efficiency")):hover p,
+  div:has(> * :contains("Manual Effort Reduction")):hover p {
+      color: #5a6b5e !important;
+      -webkit-text-fill-color: #5a6b5e !important;
+  }
+</style>
+<style id="hero-feature-tags-dark">
+  /* Force dark/black font color on hero tech chips */
+  .hero-tags,
+  .hero-features,
+  div:has(> * :contains("ESP32 Controller")),
+  div:has(> :contains("ESP32 Controller")),
+  span:has(:contains("ESP32 Controller")),
+  span:has(:contains("ESP32-CAM AI")),
+  span:has(:contains("Dual Servo Actuation")),
+  span:has(:contains("IR Line Tracking")) {
+      color: #1e2a22 !important;
+      -webkit-text-fill-color: #1e2a22 !important;
+      font-weight: 600 !important;
+      opacity: 1 !important;
+  }
+
+  /* Target nested text and icons directly */
+  div:has(> * :contains("ESP32 Controller")) *,
+  div:has(> :contains("ESP32 Controller")) * {
+      color: #1e2a22 !important;
+      -webkit-text-fill-color: #1e2a22 !important;
+  }
+
+  /* Maintain emerald accent on the small icons */
+  div:has(> * :contains("ESP32 Controller")) i,
+  div:has(> :contains("ESP32 Controller")) i {
+      color: #2d6a4f !important;
+      -webkit-text-fill-color: #2d6a4f !important;
+  }
+</style>
+</head>
+
+<body>
+
+<!-- =====================================================
+                         NAVBAR
+===================================================== -->
+<nav class="navbar navbar-expand-lg fixed-top smart-navbar">
+    <div class="container">
+        <a class="navbar-brand" href="#home">
+            <span class="brand-icon"><i class="bi bi-recycle"></i></span>
+            SMART<span>WASTE</span>
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
+            <i class="bi bi-list"></i>
+        </button>
+
+        <div class="collapse navbar-collapse" id="mainNav">
+            <ul class="navbar-nav ms-auto align-items-lg-center">
+                <li class="nav-item"><a class="nav-link active" href="#home">Home</a></li>
+                <li class="nav-item"><a class="nav-link" href="#about">About Us</a></li>
+                <li class="nav-item"><a class="nav-link" href="#features">Features</a></li>
+                <li class="nav-item"><a class="nav-link" href="#tech-stack">Hardware & Tech</a></li>
+                <li class="nav-item"><a class="nav-link" href="#video-demo">Demo Video</a></li>
+                <li class="nav-item"><a class="nav-link" href="#works">How It Works</a></li>
+                <li class="nav-item"><a class="nav-link" href="#impact">Impact</a></li>
+                <li class="nav-item"><a class="nav-link" href="#crew">Crew</a></li>
+                <li class="nav-item"><a class="nav-link" href="#location">Location</a></li>
+                <li class="nav-item ms-lg-3">
+                    <a class="contact-btn" href="#contact">
+                        Get In Touch <i class="bi bi-arrow-right"></i>
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!-- =====================================================
+                         HERO
+===================================================== -->
+<section id="home" class="hero-section">
+    <div class="hero-grid"></div>
+    <div class="floating-circle circle-one"></div>
+    <div class="floating-circle circle-two"></div>
+
+    <div class="container position-relative">
+        <div class="row align-items-center min-vh-100 pt-5">
+            <div class="col-lg-6 hero-content">
+                <div class="hero-badge">
+                    <span></span> ESP32 + AI POWERED • SMART SEGREGATION
+                </div>
+
+                <h1>
+                    SMART WASTE
+                    <strong>MANAGEMENT</strong>
+                    <br>
+                    & SEGREGATION
+                </h1>
+
+                <p class="hero-description">
+                    Transforming waste management with
+                    <b>Artificial Intelligence, IoT and Robotics</b>
+                    for automated detection, intelligent segregation
+                    and a cleaner tomorrow.
+                </p>
+
+                <div class="hero-buttons">
+                    <a href="#features" class="btn-main">
+                        <i class="bi bi-leaf"></i> Explore System
+                    </a>
+                    <a href="#video-demo" class="btn-outline">
+                        <i class="bi bi-play-circle"></i> Watch Demo
+                    </a>
+                </div>
+
+                <div class="hero-tech">
+                    <div><i class="bi bi-cpu"></i> ESP32 Controller</div>
+                    <div><i class="bi bi-camera"></i> ESP32-CAM AI</div>
+                    <div><i class="bi bi-robot"></i> Dual Servo Array</div>
+                    <div><i class="bi bi-recycle"></i> IR Line Tracking</div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="hero-visual">
+                    <div class="tech-node node-one"><i class="bi bi-wifi"></i></div>
+                    <div class="tech-node node-two"><i class="bi bi-cpu"></i></div>
+                    <div class="tech-node node-three"><i class="bi bi-leaf"></i></div>
+
+                    <div class="rover-platform">
+                        <div class="rover">
+                            <div class="rover-top">
+                                <div class="rover-camera">
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                                <div class="rover-screen">
+                                    <i class="bi bi-recycle pulse-icon"></i>
+                                </div>
+                            </div>
+                            <div class="rover-body">
+                                <div class="rover-light"></div>
+                                <span class="rover-tag">ESP32 ROVER</span>
+                            </div>
+                            <div class="wheel wheel-left"></div>
+                            <div class="wheel wheel-right"></div>
+                        </div>
+                    </div>
+
+                    <div class="waste-bins">
+                        <div class="waste-bin organic" onclick="triggerBinAnimation('organic')" title="Click to test organic compartment">
+                            <div class="bin-lid"></div>
+                            <i class="bi bi-flower1"></i>
+                            <small>ORGANIC</small>
+                        </div>
+                        <div class="waste-bin plastic" onclick="triggerBinAnimation('plastic')" title="Click to test plastic compartment">
+                            <div class="bin-lid"></div>
+                            <i class="bi bi-cup-straw"></i>
+                            <small>PLASTIC</small>
+                        </div>
+                        <div class="waste-bin metal" onclick="triggerBinAnimation('metal')" title="Click to test metal compartment">
+                            <div class="bin-lid"></div>
+                            <i class="bi bi-box"></i>
+                            <small>METAL</small>
+                        </div>
+                        <div class="waste-bin paper" onclick="triggerBinAnimation('paper')" title="Click to test paper compartment">
+                            <div class="bin-lid"></div>
+                            <i class="bi bi-file-earmark"></i>
+                            <small>PAPER</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                         ABOUT
+===================================================== -->
+<section id="about" class="section about-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6">
+                <div class="section-label">ABOUT SMARTWASTE</div>
+                <h2 class="section-title">Building a <span>cleaner</span> and smarter future.</h2>
+                <p class="section-text">
+                    SmartWaste is an intelligent waste management and segregation system designed to make waste handling more efficient, automated and sustainable.
+                </p>
+                <p class="section-text">
+                    By combining AI-based waste detection, IoT monitoring, robotics and real-time analytics, the system can identify waste categories and support automated segregation.
+                </p>
+                <div class="about-points">
+                    <div><i class="bi bi-check-circle-fill"></i> AI-based waste classification</div>
+                    <div><i class="bi bi-check-circle-fill"></i> Real-time IoT monitoring</div>
+                    <div><i class="bi bi-check-circle-fill"></i> Automated waste segregation</div>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="about-visual">
+                    <div class="about-card main-card">
+                        <i class="bi bi-recycle"></i>
+                        <h3>Smart Segregation</h3>
+                        <p>Detect → Classify → Segregate</p>
+                    </div>
+                    <div class="mini-card mini-one"><i class="bi bi-cpu"></i><span>AI</span></div>
+                    <div class="mini-card mini-two"><i class="bi bi-wifi"></i><span>IoT</span></div>
+                    <div class="mini-card mini-three"><i class="bi bi-robot"></i><span>Robotics</span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                       FEATURES
+===================================================== -->
+<section id="features" class="section features-section">
+    <div class="container">
+        <div class="text-center section-heading">
+            <div class="section-label">SMART FEATURES</div>
+            <h2 class="section-title">Technology that makes waste <span>smarter.</span></h2>
+            <p>An integrated ecosystem combining AI, IoT and robotics.</p>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon green"><i class="bi bi-camera"></i></div>
+                    <h4>AI Waste Detection</h4>
+                    <p>Identifies and classifies waste using intelligent computer vision.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon blue"><i class="bi bi-wifi"></i></div>
+                    <h4>IoT Monitoring</h4>
+                    <p>Monitor bins, sensors and waste levels in real time.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon yellow"><i class="bi bi-robot"></i></div>
+                    <h4>Automatic Segregation</h4>
+                    <p>Robotic mechanisms help separate waste into different categories.</p>
+                </div>
+            </div>
+            <div class="col-lg-3 col-md-6">
+                <div class="feature-card">
+                    <div class="feature-icon purple"><i class="bi bi-bar-chart"></i></div>
+                    <h4>Data Analytics</h4>
+                    <p>Real-time analytics provide useful waste management insights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     HARDWARE, SENSORS & EMBEDDED STACK
+===================================================== -->
+<section id="tech-stack" class="comparison-section">
+    <div class="container">
+        <div class="comparison-heading text-center">
+            <span class="comparison-label">EMBEDDED HARDWARE & SENSORS</span>
+            <h2>Core Technology & <span>Hardware Stack.</span></h2>
+            <p>
+                Engineered with high-speed microcontrollers, precision servo actuators, optical intelligence, and low-noise power regulation.
+            </p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-cpu-fill"></i></div>
+                    <small>MICROCONTROLLER</small>
+                    <h4>ESP32 Core Module</h4>
+                    <p>Dual-core processing hub executing real-time sensor polling, Wi-Fi telemetry, and PWM motor coordination.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-camera-video-fill"></i></div>
+                    <small>VISION SYSTEM</small>
+                    <h4>ESP32-CAM (AI Vision)</h4>
+                    <p>OV2640 optical sensor capturing incoming waste images for localized inference and classification.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-code-slash"></i></div>
+                    <small>FIRMWARE</small>
+                    <h4>C++ / Embedded Code</h4>
+                    <p>Optimized low-latency C++ firmware architecture for hardware-level interrupts, timers, and telemetry streaming.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-lightning-charge-fill"></i></div>
+                    <small>POWER REGULATION</small>
+                    <h4>LM2596 Buck Converter</h4>
+                    <p>Steps down high-capacity battery voltages to a steady, regulated 5V rail for jitter-free servo operation.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-arrow-repeat"></i></div>
+                    <small>ACTUATION SYSTEM</small>
+                    <h4>Servo 180° & 360°</h4>
+                    <p>180° servo controls chute tilt segregation, while 360° continuous servos drive automated intake conveyors.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4 col-md-6">
+                <div class="tech-box">
+                    <div class="tech-box-icon"><i class="bi bi-broadcast-pin"></i></div>
+                    <small>NAVIGATION & SENSING</small>
+                    <h4>IR Line Sensors</h4>
+                    <p>Infrared line follower sensor arrays providing line tracking for autonomous rover navigation and obstacle avoidance.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- GRAPHS -->
+        <div class="row g-4 mt-5">
+            <div class="col-lg-6">
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <div>
+                            <span>COMPARISON 01</span>
+                            <h4>Segregation Efficiency</h4>
+                        </div>
+                        <i class="bi bi-bar-chart-fill"></i>
+                    </div>
+                    <div class="graph-container">
+                        <canvas id="segregationChart"></canvas>
+                    </div>
+                    <p class="graph-note">Measured prototype sorting efficiency with ESP32-CAM classification.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-6">
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <div>
+                            <span>COMPARISON 02</span>
+                            <h4>Manual Effort Reduction</h4>
+                        </div>
+                        <i class="bi bi-people-fill"></i>
+                    </div>
+                    <div class="graph-container">
+                        <canvas id="effortChart"></canvas>
+                    </div>
+                    <p class="graph-note">Automated servo sorting reduces repetitive human segregation efforts.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-8">
+                <div class="graph-card">
+                    <div class="graph-header">
+                        <div>
+                            <span>COMPARISON 03</span>
+                            <h4>Recycling Potential</h4>
+                        </div>
+                        <i class="bi bi-recycle"></i>
+                    </div>
+                    <div class="graph-container large">
+                        <canvas id="recyclingChart"></canvas>
+                    </div>
+                    <p class="graph-note">High purity rate in segregated waste streams ready for recycling.</p>
+                </div>
+            </div>
+
+            <div class="col-lg-4">
+                <div class="future-card">
+                    <div class="future-card-icon"><i class="bi bi-stars"></i></div>
+                    <span>OUR VISION</span>
+                    <h3>Cleaner cities. Smarter future.</h3>
+                    <p>SmartWaste integrates ESP32 microcontrollers, servos, and computer vision into an autonomous ecosystem.</p>
+
+                    <div class="future-list">
+                        <div><i class="bi bi-check-circle-fill"></i> ESP32 Core</div>
+                        <div><i class="bi bi-check-circle-fill"></i> AI Vision</div>
+                        <div><i class="bi bi-check-circle-fill"></i> Dual Servos</div>
+                        <div><i class="bi bi-check-circle-fill"></i> IR Tracking</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     SMARTWASTE SPLIT-VIEW VIDEO DEMONSTRATION
+===================================================== -->
+<section id="video-demo" class="video-demo-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <!-- Left Column: Details & Feature Points -->
+            <div class="col-lg-6 video-info-side">
+                <div class="video-pill-badge">
+                    <span class="pulse-dot"></span> LIVE HARDWARE BENCHMARK
+                </div>
+
+                <h2 class="video-split-title">
+                    SmartWaste in <br>
+                    <span>Real-Time Action.</span>
+                </h2>
+
+                <p class="video-split-desc">
+                    Watch our working prototype demonstrate automated optical classification, IR line tracking, and servo-assisted multi-bin deposition without human intervention.
+                </p>
+
+                <div class="video-feature-list">
+                    <div class="video-feature-item">
+                        <div class="v-feat-icon"><i class="bi bi-camera-video-fill"></i></div>
+                        <div>
+                            <h5>ESP32-CAM Vision Pipeline</h5>
+                            <p>Captures real-time frames and executes lightweight inference under 0.8s.</p>
+                        </div>
+                    </div>
+
+                    <div class="video-feature-item">
+                        <div class="v-feat-icon"><i class="bi bi-sign-turn-right-fill"></i></div>
+                        <div>
+                            <h5>Autonomous Line Navigation</h5>
+                            <p>IR multi-channel array maintains smooth path alignment across disposal zones.</p>
+                        </div>
+                    </div>
+
+                    <div class="video-feature-item">
+                        <div class="v-feat-icon"><i class="bi bi-gear-wide-connected"></i></div>
+                        <div>
+                            <h5>High-Torque Servo Sorting</h5>
+                            <p>Rotational chute deflection deposits items into Organic, Plastic, Metal, or Paper.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Quick Benchmark Stat Badges -->
+                <div class="video-stat-row">
+                    <div class="v-stat-chip">
+                        <strong>92%</strong>
+                        <span>Accuracy</span>
+                    </div>
+                    <div class="v-stat-chip">
+                        <strong>&lt;0.8s</strong>
+                        <span>Inference Speed</span>
+                    </div>
+                    <div class="v-stat-chip">
+                        <strong>4-Way</strong>
+                        <span>Segregation</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Right Column: Video Player Glass Wrapper -->
+            <div class="col-lg-6">
+                <div class="video-split-card">
+                    <div class="video-top-bar">
+                        <div class="window-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                        <span class="video-status-text">
+                            <span class="status-dot"></span> ESP32-CAM LIVE PROTOTYPE
+                        </span>
+                    </div>
+
+                    <div class="video-screen-wrapper">
+                        <video id="smartWasteDemo" class="demo-video" controls muted playsinline preload="metadata" poster="robot.png">
+                            <source src="1.mp4" type="video/mp4">
+                            Your browser does not support the video element.
+                        </video>
+                    </div>
+
+                    <div class="video-bottom-caption">
+                        <div class="tech-tags">
+                            <span>ESP32-CAM</span>
+                            <span>C++ Firmware</span>
+                            <span>Dual Servo MG996R</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                      HOW IT WORKS
+===================================================== -->
+<section id="works" class="section works-section">
+    <div class="container">
+        <div class="text-center section-heading">
+            <div class="section-label">HOW IT WORKS</div>
+            <h2 class="section-title">From waste to <span>intelligent action.</span></h2>
+        </div>
+
+        <div class="process-line"></div>
+
+        <div class="row g-4 process-row">
+            <div class="col-md-3">
+                <div class="process-card">
+                    <div class="process-number">01</div>
+                    <div class="process-icon"><i class="bi bi-camera"></i></div>
+                    <h4>Waste Detection</h4>
+                    <p>Sensors and cameras detect incoming waste.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-card">
+                    <div class="process-number">02</div>
+                    <div class="process-icon"><i class="bi bi-cpu"></i></div>
+                    <h4>AI Classification</h4>
+                    <p>AI identifies the type and category of waste.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-card">
+                    <div class="process-number">03</div>
+                    <div class="process-icon"><i class="bi bi-robot"></i></div>
+                    <h4>Smart Segregation</h4>
+                    <p>The system directs waste to the correct category.</p>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="process-card">
+                    <div class="process-number">04</div>
+                    <div class="process-icon"><i class="bi bi-truck"></i></div>
+                    <h4>Collection</h4>
+                    <p>Waste collection and monitoring becomes efficient.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                         IMPACT
+===================================================== -->
+<section id="impact" class="impact-section">
+    <div class="container">
+        <div class="row align-items-center">
+            <div class="col-lg-5">
+                <div class="section-label">OUR IMPACT</div>
+                <h2>Technology with a <span>purpose.</span></h2>
+                <p>Smart waste management can help communities reduce waste, improve segregation and encourage responsible recycling.</p>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="row g-3">
+                    <div class="col-6">
+                        <div class="impact-card">
+                            <i class="bi bi-bullseye"></i>
+                            <strong>92%</strong>
+                            <span>Segregation Accuracy</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="impact-card">
+                            <i class="bi bi-recycle"></i>
+                            <strong>78%</strong>
+                            <span>Waste Sent for Recycling</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="impact-card">
+                            <i class="bi bi-trash3"></i>
+                            <strong>64%</strong>
+                            <span>Landfill Reduction</span>
+                        </div>
+                    </div>
+                    <div class="col-6">
+                        <div class="impact-card">
+                            <i class="bi bi-people"></i>
+                            <strong>500+</strong>
+                            <span>Communities Benefited</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                     CREW CHAMPION
+===================================================== -->
+<section id="crew" class="section crew-section">
+    <div class="container">
+        <div class="text-center section-heading">
+            <div class="section-label">MEET THE TEAM</div>
+            <h2 class="section-title">Our <span>Crew Champions.</span></h2>
+            <p>The people behind the idea, technology and innovation.</p>
+        </div>
+
+        <div class="row g-4 justify-content-center">
+            <div class="col-lg-3 col-md-6">
+                <div class="crew-card">
+                    <div class="crew-avatar"><i class="bi bi-person-fill"></i></div>
+                    <h4>Ava Acharya</h4>
+                    <span>Team Lead</span>
+                    <p>Project coordination, innovation and pitching.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="crew-card">
+                    <div class="crew-avatar"><i class="bi bi-cpu-fill"></i></div>
+                    <h4>Anahita Singh</h4>
+                    <span>Software Developer</span>
+                    <p>Computer vision and intelligent classification.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="crew-card">
+                    <div class="crew-avatar"><i class="bi bi-robot"></i></div>
+                    <h4>Mayukhi Sharma</h4>
+                    <span>IoT Developer</span>
+                    <p>Sensors, electronics and rover development.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="col-lg-3 col-md-6">
+                <div class="crew-card">
+                    <div class="crew-avatar"><i class="bi bi-code-slash"></i></div>
+                    <h4>Ritul Kumari</h4>
+                    <span>IOT Developer</span>
+                    <p>UI/UX, frontend development and dashboard design.</p>
+                    <div class="social-links">
+                        <a href="#"><i class="bi bi-linkedin"></i></a>
+                        <a href="#"><i class="bi bi-github"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                      LOCATION
+===================================================== -->
+<section id="location" class="section location-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5">
+                <div class="section-label">OUR LOCATION</div>
+                <h2 class="section-title">Find our <span>SmartWaste Crew.</span></h2>
+                <p class="section-text">Visit us and connect with the team working on intelligent waste management, robotics and sustainable technology.</p>
+
+                <div class="address-card">
+                    <div class="address-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                    <div>
+                        <h5>Address</h5>
+                        <p>ITER, SOA University<br>Bhubaneswar, Odisha<br>India</p>
+                    </div>
+                </div>
+
+                <div class="address-card">
+                    <div class="address-icon"><i class="bi bi-envelope-fill"></i></div>
+                    <div>
+                        <h5>Email</h5>
+                        <p>smartwaste.team@example.com</p>
+                    </div>
+                </div>
+
+                <a href="https://www.google.com/maps/search/?api=1&query=ITER+SOA+University+Bhubaneswar" target="_blank" class="map-button">
+                    <i class="bi bi-map"></i> Open Google Maps
+                </a>
+            </div>
+
+            <div class="col-lg-7">
+                <div class="map-wrapper">
+                    <iframe src="https://www.google.com/maps?q=ITER%20SOA%20University%20Bhubaneswar&output=embed" width="100%" height="430" style="border:0" allowfullscreen="" loading="lazy"></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                        CONTACT
+===================================================== -->
+<section id="contact" class="contact-section">
+    <div class="container">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5">
+                <div class="section-label">CONTACT US</div>
+                <h2>Let's build a <span>cleaner future.</span></h2>
+                <p>Have an idea, collaboration or question? Send a message to the SmartWaste crew.</p>
+
+                <div class="contact-info">
+                    <div><i class="bi bi-envelope"></i> smartwaste.team@example.com</div>
+                    <div><i class="bi bi-telephone"></i> +91 XXXXX XXXXX</div>
+                </div>
+            </div>
+
+            <div class="col-lg-7">
+                <form id="contactForm" class="contact-form">
+                    <div class="row g-3">
+                        <div class="col-md-6">
+                            <input type="text" class="form-control" placeholder="Your Name" required>
+                        </div>
+                        <div class="col-md-6">
+                            <input type="email" class="form-control" placeholder="Your Email" required>
+                        </div>
+                        <div class="col-12">
+                            <input type="text" class="form-control" placeholder="Subject" required>
+                        </div>
+                        <div class="col-12">
+                            <textarea class="form-control" rows="5" placeholder="Your Message" required></textarea>
+                        </div>
+                        <div class="col-12">
+                            <button type="submit" class="send-button">
+                                Send Message <i class="bi bi-arrow-right"></i>
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+                         FOOTER
+===================================================== -->
+<footer class="footer">
+    <div class="container">
+        <div class="row align-items-center g-3">
+            <div class="col-md-6">
+                <div class="footer-brand">
+                    <i class="bi bi-recycle"></i> SMART<span>WASTE</span>
+                </div>
+                <small>Smart technology for a cleaner tomorrow.</small>
+            </div>
+
+            <div class="col-md-6 text-md-end">
+                <div class="footer-links">
+                    <a href="#home">Home</a>
+                    <a href="#about">About</a>
+                    <a href="#features">Features</a>
+                    <a href="#tech-stack">Hardware</a>
+                    <a href="#crew">Crew</a>
+                    <a href="#contact">Contact</a>
+                </div>
+            </div>
+        </div>
+
+        <hr>
+        <div class="text-center copyright">
+            © 2026 SmartWaste. All Rights Reserved.
+        </div>
+    </div>
+</footer>
+
+<!-- Back To Top -->
+<button id="backTop" class="back-top">
+    <i class="bi bi-arrow-up"></i>
+</button>
+
+<!-- Bootstrap JS & jQuery -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+<script src="script.js"></script>
+<script id="video-layout-fix">
+document.addEventListener("DOMContentLoaded", function() {
+    const videoElem = document.querySelector("video");
+    if (!videoElem) return;
+
+    let targetSection = videoElem.closest("section") || videoElem.closest(".container").parentElement;
+    if (!targetSection) return;
+
+    targetSection.innerHTML = `
+      <div class="container py-4">
+        <div class="row align-items-center g-5">
+          
+          <!-- Left Column: Title & Keypoints -->
+          <div class="col-lg-5 text-start">
+            <span class="badge px-3 py-2 rounded-pill text-uppercase mb-3" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; letter-spacing: 1px; font-size: 0.8rem;">
+              SEE IT IN ACTION
+            </span>
+            <h2 class="display-6 fw-bold mb-3" style="color: #1e2a22; letter-spacing: -0.5px; font-size: 2.3rem;">
+              AWCAS Video Demonstration
+            </h2>
+            <p class="mb-4" style="color: #5a6b5e; font-size: 1.05rem; line-height: 1.6;">
+              See how our smart waste management system detects, monitors and supports intelligent waste segregation.
+            </p>
+
+            <!-- Keypoints List -->
+            <div style="display: flex; flex-direction: column; gap: 16px;">
+              <div style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 20px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 14px rgba(30, 42, 34, 0.03);">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(45, 106, 79, 0.1); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+                  <i class="bi bi-camera-video"></i>
+                </div>
+                <div>
+                  <h6 style="margin: 0 0 3px 0; font-weight: 700; color: #1e2a22; font-size: 1rem;">Real-Time Detection</h6>
+                  <p style="margin: 0; font-size: 0.88rem; color: #5a6b5e;">Sensors and cameras actively track incoming waste items.</p>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 20px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 14px rgba(30, 42, 34, 0.03);">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(45, 106, 79, 0.1); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+                  <i class="bi bi-cpu"></i>
+                </div>
+                <div>
+                  <h6 style="margin: 0 0 3px 0; font-weight: 700; color: #1e2a22; font-size: 1rem;">AI Classification</h6>
+                  <p style="margin: 0; font-size: 0.88rem; color: #5a6b5e;">Fast edge AI segregation into recyclable & non-recyclable.</p>
+                </div>
+              </div>
+
+              <div style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 20px; padding: 18px 20px; display: flex; align-items: center; gap: 16px; box-shadow: 0 4px 14px rgba(30, 42, 34, 0.03);">
+                <div style="width: 46px; height: 46px; border-radius: 14px; background: rgba(45, 106, 79, 0.1); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.35rem; flex-shrink: 0;">
+                  <i class="bi bi-gear-wide-connected"></i>
+                </div>
+                <div>
+                  <h6 style="margin: 0 0 3px 0; font-weight: 700; color: #1e2a22; font-size: 1rem;">Automated Servo Routing</h6>
+                  <p style="margin: 0; font-size: 0.88rem; color: #5a6b5e;">180° dual servo directs materials into separate bins.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right Column: Video Box with AWCAS DEMO text -->
+          <div class="col-lg-7">
+            <div style="border-radius: 36px; overflow: hidden; border: 2.5px solid #c9d8c7; box-shadow: 0 20px 45px rgba(30, 42, 34, 0.12); background: #111814; position: relative; max-width: 580px; margin-left: auto;">
+              <div style="position: relative; width: 100%; padding-top: 80%; background: #000;">
+                <video id="demo-vid" controls preload="metadata" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;">
+                  <source src="demo.mp4" type="video/mp4">
+                  Your browser does not support the video tag.
+                </video>
+              </div>
+              <div style="background: #19271e; color: #e5eee4; padding: 14px 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.88rem; border-top: 1px solid rgba(255,255,255,0.08);">
+                <span style="font-weight: 700; letter-spacing: 0.5px; color: #ffffff;">AWCAS DEMO</span>
+                <small style="color: #a7f3d0; font-weight: 600;">ESP32 + AI • Automated Segregation</small>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+    targetSection.style.backgroundColor = "#e5eee4";
+    targetSection.style.padding = "80px 0";
+});
+</script>
+
+<script id="remove-bottom-two-cards-only">
+document.addEventListener("DOMContentLoaded", function() {
+    // Target only the specific bottom elements
+    const elementsToFind = ["Recycling Potential", "Cleaner cities. Smarter future."];
+
+    elementsToFind.forEach(text => {
+        // Search headings or titles specifically
+        const matches = Array.from(document.querySelectorAll("h2, h3, h4, h5, .card-title, span, p"))
+            .filter(el => el.textContent && el.textContent.trim().includes(text));
+
+        matches.forEach(el => {
+            // Find its closest bootstrap column wrapper
+            const col = el.closest("[class*='col-']");
+            if (col && col.parentElement) {
+                col.remove();
+            } else {
+                const card = el.closest(".card");
+                if (card) card.remove();
+            }
+        });
+    });
+});
+</script>
+<script id="force-no-green-hover-js">
+document.addEventListener("DOMContentLoaded", function() {
+    function cleanCards() {
+        // Target all cards and wrappers inside comparison / charts
+        const allCards = document.querySelectorAll('.card, [class*="col-"] > div, div:has(canvas), div:has(svg)');
+        
+        allCards.forEach(card => {
+            const text = card.textContent || "";
+            if (text.includes("Segregation Efficiency") || text.includes("Manual Effort Reduction") || text.includes("COMPARISON")) {
+                // Remove existing problematic hover classes
+                card.classList.remove("tech-card", "hover-green");
+                
+                // Force base styling
+                card.style.setProperty("background", "#ffffff", "important");
+                card.style.setProperty("background-color", "#ffffff", "important");
+                card.style.setProperty("background-image", "none", "important");
+                card.style.setProperty("border", "1.5px solid #d1dfcf", "important");
+                card.style.setProperty("border-radius", "24px", "important");
+                card.style.setProperty("transition", "transform 0.25s ease, box-shadow 0.25s ease", "important");
+
+                // Override on mouse hover
+                card.addEventListener("mouseenter", function(e) {
+                    this.style.setProperty("background", "#ffffff", "important");
+                    this.style.setProperty("background-color", "#ffffff", "important");
+                    this.style.setProperty("background-image", "none", "important");
+                    this.style.setProperty("transform", "translateY(-4px)", "important");
+                    this.style.setProperty("box-shadow", "0 12px 28px rgba(30, 42, 34, 0.08)", "important");
+                    this.style.setProperty("border-color", "#c8d8c6", "important");
+                });
+
+                card.addEventListener("mouseleave", function(e) {
+                    this.style.setProperty("background", "#ffffff", "important");
+                    this.style.setProperty("background-color", "#ffffff", "important");
+                    this.style.setProperty("background-image", "none", "important");
+                    this.style.setProperty("transform", "translateY(0px)", "important");
+                    this.style.setProperty("box-shadow", "0 4px 14px rgba(30, 42, 34, 0.03)", "important");
+                    this.style.setProperty("border-color", "#d1dfcf", "important");
+                });
+            }
+        });
+    }
+
+    cleanCards();
+    setTimeout(cleanCards, 500); // re-check after charts load
+});
+</script>
+<script id="feasibility-visibility-detail-section">
+document.addEventListener("DOMContentLoaded", function() {
+    if (document.getElementById("feasibility-visibility-grid")) return;
+
+    // Find the comparison section row containing the charts
+    const comparisonCards = document.querySelectorAll("div:has(> * :contains('COMPARISON 01')), div:has(> * :contains('COMPARISON 02')), div:has(> * :contains('Deployment Feasibility'))");
+    if (!comparisonCards.length) return;
+
+    const rowContainer = comparisonCards[0].closest(".row");
+    if (!rowContainer) return;
+
+    const sectionHTML = `
+      <!-- Dedicated Feasibility & Visibility Section -->
+      <div class="col-12 mt-4" id="feasibility-visibility-grid">
+        <div class="row g-4">
+          
+          <!-- 1. Feasibility Card -->
+          <div class="col-lg-6">
+            <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 10px 25px rgba(30, 42, 34, 0.04); height: 100%;">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge px-3 py-1 rounded-pill text-uppercase" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.8px;">
+                  SYSTEM FEASIBILITY
+                </span>
+                <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(45, 106, 79, 0.1); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                  <i class="bi bi-gear-fill"></i>
+                </div>
+              </div>
+              <h4 class="fw-bold mb-2" style="color: #1e2a22; font-size: 1.35rem;">Rapid Deployment & Low Overhead</h4>
+              <p class="mb-4" style="color: #5a6b5e; font-size: 0.9rem; line-height: 1.5;">Designed with modular low-cost microcontrollers to fit existing bin infrastructure seamlessly.</p>
+
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>Retrofit Compatibility (Standard Bins)</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">94%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 94%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>Hardware Cost-to-Performance Ratio</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">88%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 88%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>Operational Energy Efficiency</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">92%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 92%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 2. Visibility Card -->
+          <div class="col-lg-6">
+            <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 10px 25px rgba(30, 42, 34, 0.04); height: 100%;">
+              <div class="d-flex justify-content-between align-items-center mb-3">
+                <span class="badge px-3 py-1 rounded-pill text-uppercase" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; font-size: 0.75rem; letter-spacing: 0.8px;">
+                  DATA VISIBILITY
+                </span>
+                <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(45, 106, 79, 0.1); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.1rem;">
+                  <i class="bi bi-broadcast"></i>
+                </div>
+              </div>
+              <h4 class="fw-bold mb-2" style="color: #1e2a22; font-size: 1.35rem;">Real-Time Telemetry & Insights</h4>
+              <p class="mb-4" style="color: #5a6b5e; font-size: 0.9rem; line-height: 1.5;">Continuous monitoring with edge analytics providing instant fill levels and classification feedback.</p>
+
+              <div style="display: flex; flex-direction: column; gap: 16px;">
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>AI Model Classification Accuracy</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">96.2%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 96.2%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>Live Cloud Sync & Uptime</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">99.8%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 99.8%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+
+                <div>
+                  <div class="d-flex justify-content-between mb-1" style="font-size: 0.88rem; font-weight: 600; color: #1e2a22;">
+                    <span>Sensor Telemetry Latency (< 150ms)</span>
+                    <span style="color: #2d6a4f; font-weight: 700;">95%</span>
+                  </div>
+                  <div style="height: 8px; background: #e5eee4; border-radius: 6px; overflow: hidden;">
+                    <div style="width: 95%; height: 100%; background: linear-gradient(90deg, #2d6a4f, #52b788); border-radius: 6px;"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    `;
+
+    rowContainer.insertAdjacentHTML('beforeend', sectionHTML);
+});
+</script>
+<script id="sih-impact-benefits-section">
+document.addEventListener("DOMContentLoaded", function() {
+    // Find the Impact Section
+    const impactTarget = document.querySelector("#impact") || 
+                         Array.from(document.querySelectorAll("section")).find(s => s.textContent.includes("Technology with a purpose") || s.textContent.includes("OUR IMPACT"));
+    
+    if (!impactTarget) return;
+
+    impactTarget.innerHTML = `
+      <div class="container py-5">
+        
+        <!-- Header -->
+        <div class="text-center mb-5">
+          <span class="badge px-3 py-2 rounded-pill text-uppercase mb-2" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; letter-spacing: 1px; font-size: 0.8rem;">
+            SIH 2026 PROPOSAL
+          </span>
+          <h2 class="display-5 fw-bold" style="color: #1e2a22;">Impact & Benefits</h2>
+          <p class="lead mx-auto" style="max-width: 650px; color: #5a6b5e; font-size: 1.05rem;">
+            Empowering institutional campuses and cities with automated edge-AI segregation and autonomous waste collection.
+          </p>
+        </div>
+
+        <!-- Top Row: 5 Core Impact Categories -->
+        <div class="row g-3 mb-5">
+          <div class="col-md">
+            <div class="p-3 text-center" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 18px; box-shadow: 0 4px 14px rgba(30,42,34,0.03); height: 100%;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(235, 87, 87, 0.12); color: #d90429; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.1rem;"><i class="bi bi-tree"></i></div>
+              <h6 class="fw-bold mb-1" style="color: #1e2a22; font-size: 0.9rem;">Environmental</h6>
+              <p class="mb-0" style="font-size: 0.78rem; color: #5a6b5e;">Less contamination & boosted recycling purity.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="p-3 text-center" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 18px; box-shadow: 0 4px 14px rgba(30,42,34,0.03); height: 100%;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(181, 23, 158, 0.12); color: #b5179e; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.1rem;"><i class="bi bi-shield-check"></i></div>
+              <h6 class="fw-bold mb-1" style="color: #1e2a22; font-size: 0.9rem;">Social Impact</h6>
+              <p class="mb-0" style="font-size: 0.78rem; color: #5a6b5e;">Reduces direct manual waste handling & hazards.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="p-3 text-center" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 18px; box-shadow: 0 4px 14px rgba(30,42,34,0.03); height: 100%;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(114, 9, 183, 0.12); color: #7209b7; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.1rem;"><i class="bi bi-cash-stack"></i></div>
+              <h6 class="fw-bold mb-1" style="color: #1e2a22; font-size: 0.9rem;">Economic</h6>
+              <p class="mb-0" style="font-size: 0.78rem; color: #5a6b5e;">Lower sorting efforts and recurring operational costs.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="p-3 text-center" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 18px; box-shadow: 0 4px 14px rgba(30,42,34,0.03); height: 100%;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(76, 201, 240, 0.12); color: #0077b6; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.1rem;"><i class="bi bi-cpu"></i></div>
+              <h6 class="fw-bold mb-1" style="color: #1e2a22; font-size: 0.9rem;">Technological</h6>
+              <p class="mb-0" style="font-size: 0.78rem; color: #5a6b5e;">AI classification + robotic autonomous collection.</p>
+            </div>
+          </div>
+          <div class="col-md">
+            <div class="p-3 text-center" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 18px; box-shadow: 0 4px 14px rgba(30,42,34,0.03); height: 100%;">
+              <div style="width: 36px; height: 36px; border-radius: 10px; background: rgba(45, 106, 79, 0.12); color: #2d6a4f; display: flex; align-items: center; justify-content: center; margin: 0 auto 10px auto; font-size: 1.1rem;"><i class="bi bi-buildings"></i></div>
+              <h6 class="fw-bold mb-1" style="color: #1e2a22; font-size: 0.9rem;">Community</h6>
+              <p class="mb-0" style="font-size: 0.78rem; color: #5a6b5e;">Cleaner campuses, smart hostels & communities.</p>
+            </div>
+          </div>
+        </div>
+
+        <!-- Middle Row: 5 Key Benefits Ribbon -->
+        <div class="mb-5">
+          <h4 class="fw-bold mb-3 text-center" style="color: #1e2a22;">Key System Benefits</h4>
+          <div class="row g-3">
+            <div class="col-md">
+              <div class="p-3" style="background: #ffffff; border-left: 4px solid #2d6a4f; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <span class="fw-bold d-block text-dark mb-1" style="font-size: 0.9rem;">Better Segregation</span>
+                <small class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">Separates biodegradable & non-biodegradable at source.</small>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="p-3" style="background: #ffffff; border-left: 4px solid #2d6a4f; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <span class="fw-bold d-block text-dark mb-1" style="font-size: 0.9rem;">Automated Collection</span>
+                <small class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">Reduces dependence on manual waste pickup rounds.</small>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="p-3" style="background: #ffffff; border-left: 4px solid #2d6a4f; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <span class="fw-bold d-block text-dark mb-1" style="font-size: 0.9rem;">Scalable</span>
+                <small class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">Deployable across campuses, hospitals & societies.</small>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="p-3" style="background: #ffffff; border-left: 4px solid #2d6a4f; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <span class="fw-bold d-block text-dark mb-1" style="font-size: 0.9rem;">Safer Handling</span>
+                <small class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">Minimizes direct human contact with hazardous items.</small>
+              </div>
+            </div>
+            <div class="col-md">
+              <div class="p-3" style="background: #ffffff; border-left: 4px solid #2d6a4f; border-radius: 12px; box-shadow: 0 2px 8px rgba(0,0,0,0.04);">
+                <span class="fw-bold d-block text-dark mb-1" style="font-size: 0.9rem;">Future Ready</span>
+                <small class="text-muted d-block" style="font-size: 0.78rem; line-height: 1.3;">Continuous AI improvements, live IoT & telemetry.</small>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Bottom Row: Why AWCAS? (Current Way vs AWCAS Table Matrix) -->
+        <div class="p-4 p-md-5" style="background: #ffffff; border: 2px solid #d1dfcf; border-radius: 28px; box-shadow: 0 12px 32px rgba(30, 42, 34, 0.05);">
+          <div class="text-center mb-4">
+            <span class="badge px-4 py-2 rounded-pill text-uppercase" style="background: #2d6a4f; color: #ffffff; font-weight: 700; letter-spacing: 1px;">
+              WHY AWCAS?
+            </span>
+          </div>
+
+          <div class="table-responsive">
+            <table class="table table-borderless align-middle mb-0">
+              <thead>
+                <tr class="text-center border-bottom pb-2">
+                  <th style="width: 42%; background: rgba(229, 238, 228, 0.6); color: #1e2a22; border-radius: 12px 0 0 12px; padding: 12px;" class="fw-bold text-uppercase">Current Way</th>
+                  <th style="width: 16%; color: #2d6a4f; font-weight: 800; font-size: 1.1rem;">VS</th>
+                  <th style="width: 42%; background: #2d6a4f; color: #ffffff; border-radius: 0 12px 12px 0; padding: 12px;" class="fw-bold text-uppercase">AWCAS Solution</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr class="border-bottom">
+                  <td class="p-3 text-muted" style="font-size: 0.9rem;"><i class="bi bi-x-circle-fill text-danger me-2"></i>Waste is mixed or poorly segregated at source</td>
+                  <td class="text-center"><i class="bi bi-arrow-right text-muted"></i></td>
+                  <td class="p-3 fw-semibold" style="color: #1e2a22; font-size: 0.9rem;"><i class="bi bi-check-circle-fill text-success me-2"></i>Waste is accurately segregated by Edge AI at source</td>
+                </tr>
+                <tr class="border-bottom">
+                  <td class="p-3 text-muted" style="font-size: 0.9rem;"><i class="bi bi-x-circle-fill text-danger me-2"></i>Manual collection of waste is labour intensive</td>
+                  <td class="text-center"><i class="bi bi-arrow-right text-muted"></i></td>
+                  <td class="p-3 fw-semibold" style="color: #1e2a22; font-size: 0.9rem;"><i class="bi bi-check-circle-fill text-success me-2"></i>Autonomous rover collects and transports waste efficiently</td>
+                </tr>
+                <tr class="border-bottom">
+                  <td class="p-3 text-muted" style="font-size: 0.9rem;"><i class="bi bi-x-circle-fill text-danger me-2"></i>High chances of human error during segregation</td>
+                  <td class="text-center"><i class="bi bi-arrow-right text-muted"></i></td>
+                  <td class="p-3 fw-semibold" style="color: #1e2a22; font-size: 0.9rem;"><i class="bi bi-check-circle-fill text-success me-2"></i>AWCAS eliminates human error with automated sensor precision</td>
+                </tr>
+                <tr>
+                  <td class="p-3 text-muted" style="font-size: 0.9rem;"><i class="bi bi-x-circle-fill text-danger me-2"></i>Unsafe conditions & infections for sanitation workers</td>
+                  <td class="text-center"><i class="bi bi-arrow-right text-muted"></i></td>
+                  <td class="p-3 fw-semibold" style="color: #1e2a22; font-size: 0.9rem;"><i class="bi bi-check-circle-fill text-success me-2"></i>Touchless automated collection requires minimal human contact</td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+      </div>
+    `;
+    impactTarget.style.backgroundColor = "#e5eee4";
+});
+</script>
+
+<!-- Chart.js CDN -->
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+
+<script id="sih-feasibility-complete-fix">
+(function() {
+    function loadChartJs(callback) {
+        if (window.Chart) {
+            callback();
+            return;
+        }
+        const script = document.createElement('script');
+        script.src = 'https://cdn.jsdelivr.net/npm/chart.js';
+        script.onload = callback;
+        document.head.appendChild(script);
+    }
+
+    function injectSection() {
+        const existing = document.getElementById("feasibility-viability-section");
+        if (existing) existing.remove();
+
+        const impactSection = document.querySelector("#impact") || 
+                              Array.from(document.querySelectorAll("section")).find(s => s.textContent.includes("Impact & Benefits") || s.textContent.includes("OUR IMPACT") || s.textContent.includes("Technology with a purpose"));
+        
+        if (!impactSection) return;
+
+        const sectionHTML = `
+          <section id="feasibility-viability-section" class="py-5" style="background-color: #e5eee4;">
+            <div class="container py-4">
+              
+              <!-- Section Header -->
+              <div class="text-center mb-5">
+                <span class="badge px-3 py-2 rounded-pill text-uppercase mb-2" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; letter-spacing: 1px; font-size: 0.8rem;">
+                  SYSTEM EVALUATION MATRIX
+                </span>
+                <h2 class="display-5 fw-bold" style="color: #1e2a22;">Feasibility & Viability</h2>
+                <p class="lead mx-auto" style="max-width: 680px; color: #5a6b5e; font-size: 1.05rem;">
+                  Balanced intersection of real-world desirability, hardware feasibility, and operational viability.
+                </p>
+              </div>
+
+              <!-- 3-Pillar Cards -->
+              <div class="row g-4 mb-4">
+                <!-- 1. Desirability -->
+                <div class="col-lg-4">
+                  <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 8px 24px rgba(30, 42, 34, 0.04); height: 100%;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                      <span style="width: 12px; height: 12px; border-radius: 50%; background: #e07a5f; display: inline-block;"></span>
+                      <h5 class="fw-bold mb-0" style="color: #1e2a22;">Desirability</h5>
+                    </div>
+                    <ul class="list-unstyled mb-4" style="font-size: 0.88rem; color: #5a6b5e; display: flex; flex-direction: column; gap: 10px;">
+                      <li><strong style="color: #1e2a22;">• Real-World Need:</strong> Offices, campuses, hostels & communities.</li>
+                      <li><strong style="color: #1e2a22;">• Convenient Collection:</strong> On-demand waste pickup using web portal.</li>
+                      <li><strong style="color: #1e2a22;">• Cleaner Communities:</strong> Less direct manual waste exposure.</li>
+                      <li><strong style="color: #1e2a22;">• Efficient Segregation:</strong> High-precision classified disposal.</li>
+                    </ul>
+                    <div class="pt-2 border-top">
+                      <div class="d-flex justify-content-between mb-1" style="font-size: 0.82rem; font-weight: 700;">
+                        <span>Adoption Demand</span>
+                        <span style="color: #e07a5f;">91%</span>
+                      </div>
+                      <div style="height: 6px; background: #e5eee4; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 91%; height: 100%; background: #e07a5f; border-radius: 4px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 2. Viability -->
+                <div class="col-lg-4">
+                  <div class="p-4" style="background: #ffffff; border: 2px solid #2d6a4f; border-radius: 24px; box-shadow: 0 12px 30px rgba(45, 106, 79, 0.1); height: 100%;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                      <span style="width: 12px; height: 12px; border-radius: 50%; background: #3d84b8; display: inline-block;"></span>
+                      <h5 class="fw-bold mb-0" style="color: #1e2a22;">Viability</h5>
+                    </div>
+                    <ul class="list-unstyled mb-4" style="font-size: 0.88rem; color: #5a6b5e; display: flex; flex-direction: column; gap: 10px;">
+                      <li><strong style="color: #1e2a22;">• Low-Cost & Practical:</strong> Low-power modular microcontrollers.</li>
+                      <li><strong style="color: #1e2a22;">• Easy to Scale:</strong> Simple deployment across campus bins.</li>
+                      <li><strong style="color: #1e2a22;">• Reduces Manual Effort:</strong> Eliminates tedious manual sorting.</li>
+                      <li><strong style="color: #1e2a22;">• Simple to Maintain:</strong> Accessible modular components.</li>
+                    </ul>
+                    <div class="pt-2 border-top">
+                      <div class="d-flex justify-content-between mb-1" style="font-size: 0.82rem; font-weight: 700;">
+                        <span>Cost-Efficiency Index</span>
+                        <span style="color: #3d84b8;">88%</span>
+                      </div>
+                      <div style="height: 6px; background: #e5eee4; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 88%; height: 100%; background: #3d84b8; border-radius: 4px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- 3. Feasibility -->
+                <div class="col-lg-4">
+                  <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 8px 24px rgba(30, 42, 34, 0.04); height: 100%;">
+                    <div class="d-flex align-items-center gap-2 mb-3">
+                      <span style="width: 12px; height: 12px; border-radius: 50%; background: #9d4edd; display: inline-block;"></span>
+                      <h5 class="fw-bold mb-0" style="color: #1e2a22;">Feasibility</h5>
+                    </div>
+                    <ul class="list-unstyled mb-4" style="font-size: 0.88rem; color: #5a6b5e; display: flex; flex-direction: column; gap: 10px;">
+                      <li><strong style="color: #1e2a22;">• Available Hardware:</strong> ESP32, Camera, Ultrasonic & Servos.</li>
+                      <li><strong style="color: #1e2a22;">• AI Classification:</strong> Edge AI waste recognition pipeline.</li>
+                      <li><strong style="color: #1e2a22;">• Smart Navigation:</strong> Real-time obstacle detection.</li>
+                      <li><strong style="color: #1e2a22;">• System Integration:</strong> Solid sensor-to-actuator pipeline.</li>
+                    </ul>
+                    <div class="pt-2 border-top">
+                      <div class="d-flex justify-content-between mb-1" style="font-size: 0.82rem; font-weight: 700;">
+                        <span>Hardware Integration</span>
+                        <span style="color: #9d4edd;">95%</span>
+                      </div>
+                      <div style="height: 6px; background: #e5eee4; border-radius: 4px; overflow: hidden;">
+                        <div style="width: 95%; height: 100%; background: #9d4edd; border-radius: 4px;"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Comparative Graphs Row -->
+              <div class="row g-4 mb-4">
+                <!-- Radar Benchmark Chart -->
+                <div class="col-lg-6">
+                  <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 8px 24px rgba(30, 42, 34, 0.04); height: 100%;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="badge px-3 py-1 rounded-pill text-uppercase" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; font-size: 0.75rem;">
+                        RADAR BENCHMARK
+                      </span>
+                      <i class="bi bi-diagram-3-fill" style="color: #2d6a4f; font-size: 1.2rem;"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1" style="color: #1e2a22;">AWCAS vs Traditional System</h5>
+                    <p style="color: #5a6b5e; font-size: 0.85rem; margin-bottom: 8px;">Multi-axis benchmark across feasibility and operational viability.</p>
+                    <div style="position: relative; height: 260px; width: 100%;">
+                      <canvas id="radarCompareChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Grouped Bar Comparative Chart -->
+                <div class="col-lg-6">
+                  <div class="p-4" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 24px; box-shadow: 0 8px 24px rgba(30, 42, 34, 0.04); height: 100%;">
+                    <div class="d-flex justify-content-between align-items-center mb-2">
+                      <span class="badge px-3 py-1 rounded-pill text-uppercase" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f; font-weight: 700; font-size: 0.75rem;">
+                        METRIC BENCHMARK (%)
+                      </span>
+                      <i class="bi bi-bar-chart-fill" style="color: #2d6a4f; font-size: 1.2rem;"></i>
+                    </div>
+                    <h5 class="fw-bold mb-1" style="color: #1e2a22;">Operational Feasibility Score</h5>
+                    <p style="color: #5a6b5e; font-size: 0.85rem; margin-bottom: 8px;">Percentage comparison across source sorting and safety.</p>
+                    <div style="position: relative; height: 260px; width: 100%;">
+                      <canvas id="barCompareChart"></canvas>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Challenges -> Solutions Grid -->
+              <div class="p-4 p-md-5" style="background: #ffffff; border: 1.5px solid #d1dfcf; border-radius: 28px; box-shadow: 0 10px 25px rgba(30, 42, 34, 0.04);">
+                <div class="text-center mb-4">
+                  <span class="badge px-4 py-2 rounded-pill text-uppercase" style="background: #1e2a22; color: #ffffff; font-weight: 700; letter-spacing: 1px;">
+                    CHALLENGES &rarr; SOLUTIONS
+                  </span>
+                </div>
+                <div class="row g-3">
+                  <div class="col-lg-3 col-md-6">
+                    <div class="p-3" style="background: #fff0f3; border-radius: 18px; border: 1px solid #ffccd5; height: 100%;">
+                      <span class="badge bg-danger mb-2" style="font-size: 0.7rem;">1. Variable Waste</span>
+                      <p class="mb-2" style="font-size: 0.8rem; color: #590d22;"><strong>Challenge:</strong> Different shapes, sizes, colors & overlapping items.</p>
+                      <p class="mb-0 fw-semibold" style="font-size: 0.8rem; color: #800f2f;"><strong>Solution:</strong> Diverse AI dataset & multi-angle captures.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="p-3" style="background: #f3e8ff; border-radius: 18px; border: 1px solid #e9d5ff; height: 100%;">
+                      <span class="badge mb-2" style="background: #7b2cbf; font-size: 0.7rem;">2. Lighting Variations</span>
+                      <p class="mb-2" style="font-size: 0.8rem; color: #3c096c;"><strong>Challenge:</strong> Changing ambient lighting affects accuracy.</p>
+                      <p class="mb-0 fw-semibold" style="font-size: 0.8rem; color: #5a189a;"><strong>Solution:</strong> Image pre-processing & onboard LED illumination.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="p-3" style="background: #e0f2fe; border-radius: 18px; border: 1px solid #bae6fd; height: 100%;">
+                      <span class="badge bg-primary mb-2" style="font-size: 0.7rem;">3. Navigation Issues</span>
+                      <p class="mb-2" style="font-size: 0.8rem; color: #0369a1;"><strong>Challenge:</strong> Obstacles and crowded environments.</p>
+                      <p class="mb-0 fw-semibold" style="font-size: 0.8rem; color: #075985;"><strong>Solution:</strong> Ultrasonic sensors + fail-safe logic.</p>
+                    </div>
+                  </div>
+                  <div class="col-lg-3 col-md-6">
+                    <div class="p-3" style="background: #dcfce7; border-radius: 18px; border: 1px solid #bbf7d0; height: 100%;">
+                      <span class="badge bg-success mb-2" style="font-size: 0.7rem;">4. Power Management</span>
+                      <p class="mb-2" style="font-size: 0.8rem; color: #14532d;"><strong>Challenge:</strong> Actuators and AI edge power draw.</p>
+                      <p class="mb-0 fw-semibold" style="font-size: 0.8rem; color: #166534;"><strong>Solution:</strong> Power optimization & buck converters.</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </section>
+        `;
+
+        impactSection.insertAdjacentHTML('beforebegin', sectionHTML);
+
+        // Initialize Charts with loaded Chart.js instance
+        loadChartJs(function() {
+            const radarCanvas = document.getElementById('radarCompareChart');
+            if (radarCanvas) {
+                new Chart(radarCanvas.getContext('2d'), {
+                    type: 'radar',
+                    data: {
+                        labels: ['Desirability', 'Viability', 'Feasibility', 'Source Accuracy', 'Scalability'],
+                        datasets: [
+                            {
+                                label: 'AWCAS System',
+                                data: [92, 88, 95, 96, 90],
+                                backgroundColor: 'rgba(45, 106, 79, 0.25)',
+                                borderColor: '#2d6a4f',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#2d6a4f',
+                                pointRadius: 4
+                            },
+                            {
+                                label: 'Traditional Way',
+                                data: [45, 40, 55, 38, 30],
+                                backgroundColor: 'rgba(235, 87, 87, 0.15)',
+                                borderColor: '#e63946',
+                                borderWidth: 2,
+                                pointBackgroundColor: '#e63946',
+                                pointRadius: 4
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            r: {
+                                suggestedMin: 0,
+                                suggestedMax: 100,
+                                ticks: { display: false },
+                                grid: { color: '#e0ebd9' },
+                                pointLabels: { font: { size: 10, weight: '600' }, color: '#1e2a22' }
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }
+                        }
+                    }
+                });
+            }
+
+            const barCanvas = document.getElementById('barCompareChart');
+            if (barCanvas) {
+                new Chart(barCanvas.getContext('2d'), {
+                    type: 'bar',
+                    data: {
+                        labels: ['Sorting Accuracy', 'Retrofit Ease', 'Cost Efficiency', 'Hygiene & Safety'],
+                        datasets: [
+                            {
+                                label: 'AWCAS',
+                                data: [96, 90, 88, 94],
+                                backgroundColor: '#2d6a4f',
+                                borderRadius: 8
+                            },
+                            {
+                                label: 'Current Way',
+                                data: [40, 35, 45, 30],
+                                backgroundColor: '#d1dfcf',
+                                borderRadius: 8
+                            }
+                        ]
+                    },
+                    options: {
+                        responsive: true,
+                        maintainAspectRatio: false,
+                        scales: {
+                            y: {
+                                beginAtZero: true,
+                                max: 100,
+                                ticks: { callback: v => v + '%' },
+                                grid: { color: '#f0f4ee' }
+                            },
+                            x: {
+                                grid: { display: false },
+                                ticks: { font: { size: 10, weight: '600' }, color: '#1e2a22' }
+                            }
+                        },
+                        plugins: {
+                            legend: { position: 'bottom', labels: { boxWidth: 10, font: { size: 11 } } }
+                        }
+                    }
+                });
+            }
+        });
+    }
+
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', injectSection);
+    } else {
+        injectSection();
+    }
+})();
+</script>
+<script id="replace-hero-graphic-image">
+document.addEventListener("DOMContentLoaded", function() {
+    // Target Hero graphic image or container
+    const heroImg = document.querySelector('img[src*="robot"], .hero img, section:first-of-type img');
+    if (heroImg) {
+        heroImg.src = "robot_new.png";
+        heroImg.style.maxWidth = "100%";
+        heroImg.style.height = "auto";
+        heroImg.style.objectFit = "contain";
+        heroImg.style.filter = "drop-shadow(0 15px 30px rgba(30, 42, 34, 0.12))";
+    }
+
+    // Hide background SVG shapes/dummy bins behind the old graphic if any
+    const extraHeroElements = document.querySelectorAll('.hero-graphic-bg, .floating-bins');
+    extraHeroElements.forEach(el => el.style.display = 'none');
+});
+</script>
+<script id="replace-hero-graphic-image-v2">
+document.addEventListener("DOMContentLoaded", function() {
+    const rightCol = document.querySelector(".hero .col-lg-6:last-child, section:first-of-type .col-lg-6:last-child, section:first-of-type .col-lg-5:last-child, section:first-of-type .col-md-6:last-child");
+    
+    if (rightCol) {
+        rightCol.innerHTML = `
+          <div style="position: relative; width: 100%; padding: 10px; display: flex; flex-direction: column; gap: 14px; align-items: center;">
+            
+            <div style="width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 20px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 14px;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: rgba(45, 106, 79, 0.12); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="bi bi-cpu-fill"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold" style="color: #1e2a22; font-size: 0.95rem;">AI-Powered Segregation</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Edge-AI classification for Wet & Dry waste</small>
+              </div>
+            </div>
+
+            <div style="color: #2d6a4f; font-size: 1.2rem; margin: -6px 0; opacity: 0.8;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <div style="width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 20px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 14px;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: rgba(45, 106, 79, 0.12); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="bi bi-robot"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold" style="color: #1e2a22; font-size: 0.95rem;">Autonomous Mobile Rover</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Ultrasonic collision avoidance & smart path traversal</small>
+              </div>
+            </div>
+
+            <div style="color: #2d6a4f; font-size: 1.2rem; margin: -6px 0; opacity: 0.8;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <div style="width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 20px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 14px;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: rgba(45, 106, 79, 0.12); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="bi bi-hand-thumbs-up-fill"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold" style="color: #1e2a22; font-size: 0.95rem;">Touchless Waste Disposal</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Servo-driven hands-free hygienic lid actuation</small>
+              </div>
+            </div>
+
+            <div style="color: #2d6a4f; font-size: 1.2rem; margin: -6px 0; opacity: 0.8;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <div style="width: 100%; max-width: 440px; background: rgba(255, 255, 255, 0.85); backdrop-filter: blur(8px); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 18px; box-shadow: 0 8px 20px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 14px;">
+              <div style="width: 42px; height: 42px; border-radius: 12px; background: rgba(45, 106, 79, 0.12); color: #2d6a4f; display: flex; align-items: center; justify-content: center; font-size: 1.3rem; flex-shrink: 0;">
+                <i class="bi bi-speedometer2"></i>
+              </div>
+              <div>
+                <h6 class="mb-0 fw-bold" style="color: #1e2a22; font-size: 0.95rem;">Real-Time Monitoring</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Live bin telemetry, battery health & mission logs</small>
+              </div>
+            </div>
+
+          </div>
+        `;
+    }
+});
+</script>
+<script id="replace-about-stickers-workflow">
+document.addEventListener("DOMContentLoaded", function() {
+    // 1. Target specifically the "ABOUT SMARTWASTE" or "Building a cleaner and smarter future" section
+    const aboutSection = Array.from(document.querySelectorAll("section, div")).find(el => 
+        el.textContent && (el.textContent.includes("ABOUT SMARTWASTE") || el.textContent.includes("Building a cleaner and smarter future"))
+    );
+
+    if (!aboutSection) return;
+
+    // Find the right column containing the big green card & floating white container
+    const rightCol = aboutSection.querySelector(".col-lg-6:last-child, .col-md-6:last-child, div:has(.badge:contains('Smart Segregation'))") || 
+                     aboutSection.querySelectorAll(".col-lg-6")[1] || 
+                     aboutSection.querySelectorAll(".col-md-6")[1];
+
+    if (rightCol) {
+        // Remove background wrapper styles
+        rightCol.style.background = "transparent";
+        rightCol.style.boxShadow = "none";
+        rightCol.style.border = "none";
+
+        rightCol.innerHTML = `
+          <!-- Transparent Workflow Flowchart (No Background Card) -->
+          <div style="position: relative; width: 100%; display: flex; flex-direction: column; gap: 12px; align-items: center; padding: 10px 0;">
+            
+            <!-- Step 01 & 02: Request & Dispatch -->
+            <div style="width: 100%; max-width: 460px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 16px; box-shadow: 0 6px 18px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 12px;">
+              <span style="background: #2d6a4f; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 8px; border-radius: 8px;">01 &bull; 02</span>
+              <div style="font-size: 1.25rem; color: #2d6a4f;"><i class="bi bi-phone"></i></div>
+              <div>
+                <h6 style="margin: 0; font-weight: 700; color: #1e2a22; font-size: 0.9rem;">On-Demand Web Pickup Request</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">User requests collection &rarr; Rover dispatched from dock</small>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <div style="color: #2d6a4f; font-size: 1.1rem; line-height: 1; opacity: 0.85;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <!-- Step 03 & 04: Autonomous Navigation -->
+            <div style="width: 100%; max-width: 460px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 16px; box-shadow: 0 6px 18px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 12px;">
+              <span style="background: #2d6a4f; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 8px; border-radius: 8px;">03 &bull; 04</span>
+              <div style="font-size: 1.25rem; color: #2d6a4f;"><i class="bi bi-compass"></i></div>
+              <div>
+                <h6 style="margin: 0; font-weight: 700; color: #1e2a22; font-size: 0.9rem;">Autonomous Rover Navigation</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Obstacle avoidance navigation directly to the user</small>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <div style="color: #2d6a4f; font-size: 1.1rem; line-height: 1; opacity: 0.85;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <!-- Step 05 & 06: AI Detection & Vision -->
+            <div style="width: 100%; max-width: 460px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 16px; box-shadow: 0 6px 18px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 12px;">
+              <span style="background: #2d6a4f; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 8px; border-radius: 8px;">05 &bull; 06</span>
+              <div style="font-size: 1.25rem; color: #2d6a4f;"><i class="bi bi-camera"></i></div>
+              <div>
+                <h6 style="margin: 0; font-weight: 700; color: #1e2a22; font-size: 0.9rem;">ESP32-CAM AI Identification</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Waste placed in tray &rarr; instant AI material classification</small>
+              </div>
+            </div>
+
+            <!-- Down Arrow -->
+            <div style="color: #2d6a4f; font-size: 1.1rem; line-height: 1; opacity: 0.85;">
+              <i class="bi bi-arrow-down"></i>
+            </div>
+
+            <!-- Step 07, 08 & 09: Servo Sorting & Dock Return -->
+            <div style="width: 100%; max-width: 460px; background: rgba(255, 255, 255, 0.9); border: 1.5px solid #2d6a4f; border-radius: 16px; padding: 12px 16px; box-shadow: 0 6px 18px rgba(45, 106, 79, 0.08); display: flex; align-items: center; gap: 12px;">
+              <span style="background: #2d6a4f; color: #ffffff; font-weight: 800; font-size: 0.75rem; padding: 4px 8px; border-radius: 8px;">07 &bull; 08</span>
+              <div style="font-size: 1.25rem; color: #2d6a4f;"><i class="bi bi-arrow-repeat"></i></div>
+              <div>
+                <h6 style="margin: 0; font-weight: 700; color: #1e2a22; font-size: 0.9rem;">Automated Sorting & Dock Return</h6>
+                <small style="color: #5a6b5e; font-size: 0.78rem;">Dual-servo bin routing & auto-return to docking station</small>
+              </div>
+            </div>
+
+          </div>
+        `;
+    }
+});
+</script>
+<script id="replace-about-with-rover">
+document.addEventListener("DOMContentLoaded", function() {
+    // Target the "ABOUT SMARTWASTE" section
+    const aboutSection = Array.from(document.querySelectorAll("section, div")).find(el => 
+        el.textContent && (el.textContent.includes("ABOUT SMARTWASTE") || el.textContent.includes("Building a cleaner and smarter future"))
+    );
+
+    if (!aboutSection) return;
+
+    // Find the right container with the green graphic
+    const rightContainer = aboutSection.querySelector(".col-lg-6:last-child, .col-md-6:last-child") || 
+                           aboutSection.querySelectorAll(".col-lg-6")[1] || 
+                           aboutSection.querySelectorAll(".col-md-6")[1];
+
+    if (rightContainer) {
+        rightContainer.innerHTML = `
+          <div class="d-flex justify-content-center align-items-center" style="position: relative; width: 100%; height: 100%; min-height: 380px;">
+            <img src="hero_solution.png" alt="AWCAS Autonomous Rover" style="width: 100%; max-width: 460px; height: auto; display: block; object-fit: contain; filter: drop-shadow(0 20px 35px rgba(30, 42, 34, 0.16));">
+          </div>
+        `;
+    }
+});
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
