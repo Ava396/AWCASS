@@ -1,0 +1,50 @@
+﻿
+
+/* --- Master Typography & Theme Override --- */
+:root {
+  --font-main: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --bg-primary: #e5eee4;
+  --text-dark: #1e2a22;
+  --text-muted: #5a6b5e;
+  --accent-green: #2d6a4f;
+  --accent-emerald: #10b981;
+}
+
+body {
+  font-family: var(--font-main) !important;
+  background-color: var(--bg-primary) !important;
+  color: var(--text-dark) !important;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, h4, h5, h6, .display-1, .display-2, .display-3, .display-4, .display-5, .display-6 {
+  font-family: var(--font-heading) !important;
+  font-weight: 700 !important;
+  color: var(--text-dark) !important;
+  letter-spacing: -0.02em;
+}
+
+p, span, li, a, small, label {
+  font-family: var(--font-main);
+}
+
+/* Feature tags / badges dark readable styling */
+.hero-tags, .tech-tags, .feature-tags,
+div:has(> * :contains("ESP32 Controller")),
+div:has(> :contains("ESP32 Controller")) {
+  color: #1e2a22 !important;
+  font-weight: 600 !important;
+}
+
+/* Buttons */
+.btn-primary, .btn-success, .btn-custom {
+  background-color: var(--accent-green) !important;
+  border-color: var(--accent-green) !important;
+  color: #ffffff !important;
+  border-radius: 9999px !important;
+  font-weight: 600 !important;
+  padding: 10px 24px !important;
+}
