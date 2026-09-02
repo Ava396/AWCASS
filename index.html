@@ -4523,8 +4523,221 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(applyBrandLogo, 600);
 })();
 </script>
+<style id="hero-sih-stickers-style">
+  /* 1. SIH 2026 Top Badge */
+  .sih-official-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: #ffffff;
+    border: 1.5px solid #d4dfd2;
+    border-radius: 50px;
+    padding: 6px 14px 6px 10px;
+    box-shadow: 0 4px 14px rgba(20, 33, 24, 0.05);
+    margin-bottom: 14px;
+    transition: transform 0.2s ease;
+  }
+  .sih-official-badge:hover {
+    transform: translateY(-2px);
+    border-color: #2d6a4f;
+  }
+  .sih-badge-pill {
+    background: #ff6b35;
+    color: #fff;
+    font-size: 0.68rem;
+    font-weight: 800;
+    padding: 3px 8px;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+  }
+  .sih-badge-text {
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: #1b4332;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+  }
+
+  /* 2. Floating Badges / Stickers on Rover Prototype */
+  .rover-interactive-wrapper {
+    position: relative;
+    display: inline-block;
+  }
+  .hero-rover-sticker {
+    position: absolute;
+    background: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    border: 1.5px solid #d4dfd2;
+    border-radius: 14px;
+    padding: 8px 14px;
+    box-shadow: 0 8px 24px rgba(20, 33, 24, 0.08);
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    animation: floatSticker 4s ease-in-out infinite;
+    z-index: 10;
+  }
+  .sticker-top-left {
+    top: 15%;
+    left: -20px;
+  }
+  .sticker-bottom-right {
+    bottom: 12%;
+    right: -15px;
+    animation-delay: 2s;
+  }
+  @keyframes floatSticker {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-7px); }
+  }
+
+  .sticker-icon-dot {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+  }
+  .sticker-icon-ai {
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+  }
+  .sticker-icon-dock {
+    background: rgba(235, 94, 40, 0.12);
+    color: #eb5e28;
+  }
+
+  /* 3. Hero Bottom 3-Card Insights Row (Extracted from SIH Slide) */
+  .hero-slide-insights {
+    margin-top: 40px;
+  }
+  .slide-insight-card {
+    background: #ffffff;
+    border: 1.5px solid #d4dfd2;
+    border-radius: 18px;
+    padding: 16px 18px;
+    box-shadow: 0 4px 14px rgba(20, 33, 24, 0.03);
+    text-align: left;
+    height: 100%;
+    transition: all 0.25s ease;
+  }
+  .slide-insight-card:hover {
+    transform: translateY(-4px);
+    border-color: #2d6a4f;
+    box-shadow: 0 10px 24px rgba(45, 106, 79, 0.1);
+  }
+  .insight-tag {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    display: inline-block;
+    margin-bottom: 6px;
+  }
+  .tag-red { color: #d90429; }
+  .tag-green { color: #2d6a4f; }
+  .tag-orange { color: #f77f00; }
+  
+  .insight-title {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 700;
+    font-size: 0.95rem;
+    color: #142118;
+    margin-bottom: 4px;
+  }
+  .insight-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.82rem;
+    color: #55695c;
+    line-height: 1.45;
+    margin: 0;
+  }
+</style>
+
+<script id="hero-sih-stickers-dom">
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Rover Image par Stickers wrap karein
+  const roverImg = document.querySelector("img[src*='rover'], .hero-section img, section:first-of-type img");
+  if (roverImg && !roverImg.closest(".rover-interactive-wrapper")) {
+    const wrapper = document.createElement("div");
+    wrapper.className = "rover-interactive-wrapper";
+    roverImg.parentNode.insertBefore(wrapper, roverImg);
+    wrapper.appendChild(roverImg);
+
+    // Floating Stickers from Slide
+    const sticker1 = document.createElement("div");
+    sticker1.className = "hero-rover-sticker sticker-top-left";
+    sticker1.innerHTML = `
+      <div class="sticker-icon-dot sticker-icon-ai"><i class="bi bi-camera"></i></div>
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: #142118;">ESP32-CAM AI</div>
+        <div style="font-size: 0.68rem; color: #55695c;">Edge Source Segregation</div>
+      </div>
+    `;
+
+    const sticker2 = document.createElement("div");
+    sticker2.className = "hero-rover-sticker sticker-bottom-right";
+    sticker2.innerHTML = `
+      <div class="sticker-icon-dot sticker-icon-dock"><i class="bi bi-geo-alt-fill"></i></div>
+      <div>
+        <div style="font-size: 0.76rem; font-weight: 800; color: #142118;">Autonomous Dispatch</div>
+        <div style="font-size: 0.68rem; color: #55695c;">Dock &lt;-&gt; User On-Demand</div>
+      </div>
+    `;
+
+    wrapper.appendChild(sticker1);
+    wrapper.appendChild(sticker2);
+  }
+
+  // 2. SIH 2026 Badge Hero Title ke upar inject karein
+  const mainHeading = document.querySelector("h1");
+  if (mainHeading && !document.querySelector(".sih-official-badge")) {
+    const sihBadge = document.createElement("div");
+    sihBadge.className = "sih-official-badge";
+    sihBadge.innerHTML = `
+      <span class="sih-badge-pill">SIH 2026</span>
+      <span class="sih-badge-text">Smart India Hackathon Proposal</span>
+    `;
+    mainHeading.parentNode.insertBefore(sihBadge, mainHeading);
+  }
+
+  // 3. Hero Bottom me 3 Key Problem/Solution Insight Stickers inject karein
+  const heroContainer = document.querySelector(".hero-section .container, header .container, section:first-of-type .container");
+  if (heroContainer && !document.querySelector(".hero-slide-insights")) {
+    const insightsRow = document.createElement("div");
+    insightsRow.className = "row g-3 hero-slide-insights";
+    insightsRow.innerHTML = `
+      <div class="col-md-4">
+        <div class="slide-insight-card">
+          <span class="insight-tag tag-red"><i class="bi bi-exclamation-triangle"></i> The Major Problem</span>
+          <div class="insight-title">Manual Hazardous Sorting</div>
+          <p class="insight-desc">53% of municipal waste is unsegregated. Workers face chemical hazards and high infection risks.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="slide-insight-card">
+          <span class="insight-tag tag-green"><i class="bi bi-check-circle-fill"></i> The AWCAS Solution</span>
+          <div class="insight-title">On-Demand Web Pickup</div>
+          <p class="insight-desc">Rover leaves dock, navigates autonomously to user, and performs segregated intake touchlessly.</p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="slide-insight-card">
+          <span class="insight-tag tag-orange"><i class="bi bi-graph-up-arrow"></i> Real-World Impact</span>
+          <div class="insight-title">Zero-Touch Automation</div>
+          <p class="insight-desc">Dual servo-guided diversion redirects wet/dry batches into separate bays, cutting landfill load.</p>
+        </div>
+      </div>
+    `;
+    heroContainer.appendChild(insightsRow);
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
