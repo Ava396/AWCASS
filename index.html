@@ -4950,78 +4950,86 @@ document.addEventListener("DOMContentLoaded", function() {
     display: inline-block !important;
     width: 100% !important;
     text-align: center !important;
+    overflow: visible !important;
   }
 
-  /* Universal Floating Badge Style */
+  /* Universal Floating Badge - Safe bounds so nothing gets cut */
   .sih-floating-sticker {
     position: absolute !important;
     background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(12px) !important;
     border: 1.5px solid #d4dfd2 !important;
-    border-radius: 16px !important;
-    padding: 8px 14px !important;
-    box-shadow: 0 8px 24px rgba(20, 33, 24, 0.09) !important;
+    border-radius: 14px !important;
+    padding: 7px 12px !important;
+    box-shadow: 0 8px 22px rgba(20, 33, 24, 0.08) !important;
     display: inline-flex !important;
     align-items: center !important;
-    gap: 10px !important;
+    gap: 9px !important;
     font-family: 'Plus Jakarta Sans', sans-serif !important;
     transition: all 0.25s ease !important;
     z-index: 15 !important;
     cursor: pointer !important;
     text-align: left !important;
     white-space: nowrap !important;
-    animation: floatSticker 4.5s ease-in-out infinite !important;
+    animation: floatSticker 4.2s ease-in-out infinite !important;
   }
 
-  /* Independent Floating Animations with staggered delays */
   @keyframes floatSticker {
     0%, 100% { transform: translateY(0px); }
-    50% { transform: translateY(-7px); }
+    50% { transform: translateY(-6px); }
   }
 
   .sih-floating-sticker:hover {
-    transform: translateY(-5px) scale(1.04) !important;
+    transform: translateY(-5px) scale(1.03) !important;
     border-color: #2d6a4f !important;
-    box-shadow: 0 16px 32px rgba(45, 106, 79, 0.2) !important;
+    box-shadow: 0 14px 28px rgba(45, 106, 79, 0.18) !important;
     animation-play-state: paused !important;
   }
 
   .sticker-icon-box {
-    width: 32px !important;
-    height: 32px !important;
-    border-radius: 10px !important;
+    width: 28px !important;
+    height: 28px !important;
+    border-radius: 8px !important;
     display: flex !important;
     align-items: center !important;
     justify-content: center !important;
-    font-size: 0.95rem !important;
+    font-size: 0.88rem !important;
     flex-shrink: 0 !important;
   }
 
   .s-title {
-    font-size: 0.77rem !important;
+    font-size: 0.76rem !important;
     font-weight: 800 !important;
     color: #142118 !important;
     line-height: 1.2 !important;
   }
   .s-sub {
-    font-size: 0.68rem !important;
+    font-size: 0.67rem !important;
     color: #55695c !important;
     line-height: 1.2 !important;
   }
 
-  /* 6 Key Coordinates Around the Rover */
-  .st-top-left    { top: 8%; left: -35px; animation-delay: 0s !important; }
-  .st-mid-left    { top: 46%; left: -50px; animation-delay: 1.5s !important; }
-  .st-bottom-left { bottom: 4%; left: -25px; animation-delay: 3s !important; }
+  /* Safe In-Bounds Layout (Left Column & Right Column) */
+  /* Left Side: 01, 04, 06, 07 */
+  .st-pos-1 { top: 4%;  left: -20px; animation-delay: 0.0s !important; }
+  .st-pos-6 { top: 32%; left: -30px; animation-delay: 1.2s !important; }
+  .st-pos-7 { top: 62%; left: -25px; animation-delay: 2.4s !important; }
+  .st-pos-4 { bottom: 2%; left: -10px; animation-delay: 3.6s !important; }
 
-  .st-top-right   { top: 12%; right: -25px; animation-delay: 0.8s !important; }
-  .st-mid-right   { top: 50%; right: -40px; animation-delay: 2.3s !important; }
-  .st-bottom-right{ bottom: 6%; right: -20px; animation-delay: 3.8s !important; }
+  /* Right Side: 02, 03, 05 (Shifted inward so zero cutoff on right edge) */
+  .st-pos-2 { top: 8%;  right: 5px;  animation-delay: 0.6s !important; }
+  .st-pos-3 { top: 40%; right: 10px; animation-delay: 1.8s !important; }
+  .st-pos-5 { bottom: 10%; right: 5px; animation-delay: 3.0s !important; }
+
+  @media (max-width: 1200px) {
+    .st-pos-1, .st-pos-6, .st-pos-7, .st-pos-4 { left: 0px !important; }
+    .st-pos-2, .st-pos-3, .st-pos-5 { right: 0px !important; }
+  }
 
   @media (max-width: 991px) {
     .sih-floating-sticker {
       position: static !important;
-      margin: 8px auto !important;
+      margin: 6px auto !important;
       display: flex !important;
       width: fit-content !important;
       animation: none !important;
@@ -5045,54 +5053,21 @@ document.addEventListener("DOMContentLoaded", function() {
   // Clear previous stickers
   wrapper.querySelectorAll(".hero-rover-sticker, .sih-floating-sticker").forEach(el => el.remove());
 
-  // 1. Top Left: 06. ESP32-CAM AI Vision
+  // 01 · Trash Noticed
   const s1 = document.createElement("div");
-  s1.className = "sih-floating-sticker st-top-left";
+  s1.className = "sih-floating-sticker st-pos-1";
   s1.innerHTML = `
-    <div class="sticker-icon-box" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f;"><i class="bi bi-camera-fill"></i></div>
+    <div class="sticker-icon-box" style="background: rgba(220, 53, 69, 0.12); color: #dc3545;"><i class="bi bi-trash3-fill"></i></div>
     <div>
-      <div class="s-title">06 · ESP32-CAM AI</div>
-      <div class="s-sub">Edge Source Classification</div>
+      <div class="s-title">01 · Trash Noticed</div>
+      <div class="s-sub">Waste spotted at source</div>
     </div>
   `;
 
-  // 2. Mid Left: 07. Dual Sort Bins
+  // 02 · Web Pickup Call
   const s2 = document.createElement("div");
-  s2.className = "sih-floating-sticker st-mid-left";
+  s2.className = "sih-floating-sticker st-pos-2";
   s2.innerHTML = `
-    <div class="sticker-icon-box" style="background: rgba(36, 161, 72, 0.15); color: #24a148;"><i class="bi bi-recycle"></i></div>
-    <div>
-      <div class="s-title">07 · Dual-Bin Sorting</div>
-      <div class="s-sub">Bio &amp; Dry Segregation</div>
-    </div>
-  `;
-
-  // 3. Bottom Left: 08. Conveyor Discharge
-  const s3 = document.createElement("div");
-  s3.className = "sih-floating-sticker st-bottom-left";
-  s3.innerHTML = `
-    <div class="sticker-icon-box" style="background: rgba(20, 108, 148, 0.12); color: #146c94;"><i class="bi bi-arrow-repeat"></i></div>
-    <div>
-      <div class="s-title">08 · Auto Conveyor</div>
-      <div class="s-sub">Automated Bin Tipping</div>
-    </div>
-  `;
-
-  // 4. Top Right: 03. Dispatched from Dock
-  const s4 = document.createElement("div");
-  s4.className = "sih-floating-sticker st-top-right";
-  s4.innerHTML = `
-    <div class="sticker-icon-box" style="background: rgba(114, 9, 183, 0.12); color: #7209b7;"><i class="bi bi-box-arrow-up-right"></i></div>
-    <div>
-      <div class="s-title">03 · Rover Dispatched</div>
-      <div class="s-sub">Smart Dock Station Standby</div>
-    </div>
-  `;
-
-  // 5. Mid Right: 02. On-Demand Web Request
-  const s5 = document.createElement("div");
-  s5.className = "sih-floating-sticker st-mid-right";
-  s5.innerHTML = `
     <div class="sticker-icon-box" style="background: rgba(13, 110, 253, 0.12); color: #0d6efd;"><i class="bi bi-phone-fill"></i></div>
     <div>
       <div class="s-title">02 · Web Pickup Call</div>
@@ -5100,14 +5075,58 @@ document.addEventListener("DOMContentLoaded", function() {
     </div>
   `;
 
-  // 6. Bottom Right: 04. Autonomous Navigation
-  const s6 = document.createElement("div");
-  s6.className = "sih-floating-sticker st-bottom-right";
-  s6.innerHTML = `
+  // 03 · Rover Dispatched
+  const s3 = document.createElement("div");
+  s3.className = "sih-floating-sticker st-pos-3";
+  s3.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(114, 9, 183, 0.12); color: #7209b7;"><i class="bi bi-box-arrow-up-right"></i></div>
+    <div>
+      <div class="s-title">03 · Rover Dispatched</div>
+      <div class="s-sub">From Smart Dock Station</div>
+    </div>
+  `;
+
+  // 04 · Autonomous Path
+  const s4 = document.createElement("div");
+  s4.className = "sih-floating-sticker st-pos-4";
+  s4.innerHTML = `
     <div class="sticker-icon-box" style="background: rgba(235, 94, 40, 0.12); color: #eb5e28;"><i class="bi bi-compass-fill"></i></div>
     <div>
       <div class="s-title">04 · Autonomous Path</div>
-      <div class="s-sub">Line &amp; Obstacle Nav</div>
+      <div class="s-sub">Obstacle avoidance nav</div>
+    </div>
+  `;
+
+  // 05 · Zero-Touch Intake
+  const s5 = document.createElement("div");
+  s5.className = "sih-floating-sticker st-pos-5";
+  s5.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(13, 202, 240, 0.15); color: #0dcaf0;"><i class="bi bi-box-seam-fill"></i></div>
+    <div>
+      <div class="s-title">05 · Zero-Touch Intake</div>
+      <div class="s-sub">User drops waste in tray</div>
+    </div>
+  `;
+
+  // 06 · ESP32-CAM AI
+  const s6 = document.createElement("div");
+  s6.className = "sih-floating-sticker st-pos-6";
+  s6.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f;"><i class="bi bi-camera-fill"></i></div>
+    <div>
+      <div class="s-title">06 · ESP32-CAM AI</div>
+      <div class="s-sub">Edge Neural Classifier</div>
+    </div>
+  `;
+
+  // 07 · Dual-Bin Sorting
+  const s7 = document.createElement("div");
+  s7.className = "sih-floating-sticker st-pos-7";
+  s7.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(36, 161, 72, 0.15); color: #24a148;"><i class="bi bi-recycle"></i></div>
+    <div>
+      <div class="s-title">07 · Dual-Bin Sorting</div>
+      <div class="s-sub">Bio & Dry Flap Diversion</div>
     </div>
   `;
 
@@ -5117,10 +5136,12 @@ document.addEventListener("DOMContentLoaded", function() {
   wrapper.appendChild(s4);
   wrapper.appendChild(s5);
   wrapper.appendChild(s6);
+  wrapper.appendChild(s7);
 });
 </script>
 </body>
 </html>
+
 
 
 
