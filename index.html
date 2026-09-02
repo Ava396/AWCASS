@@ -5139,8 +5139,119 @@ document.addEventListener("DOMContentLoaded", function() {
   wrapper.appendChild(s7);
 });
 </script>
+<style id="hero-about-spacing-fix">
+  /* 1. Hero aur About AWCAS ke beech solid breathing room */
+  .hero-section,
+  header,
+  section:first-of-type {
+    padding-bottom: 70px !important;
+    margin-bottom: 30px !important;
+  }
+
+  /* 2. Slide Insight Cards (The Major Problem, etc.) par bottom margin */
+  .hero-slide-insights {
+    margin-top: 50px !important;
+    margin-bottom: 60px !important;
+  }
+
+  /* 3. About Section par proper top separation */
+  #about,
+  section:has(h2:contains("Building a cleaner")),
+  section:has(:contains("ABOUT AWCAS")) {
+    margin-top: 50px !important;
+    padding-top: 60px !important;
+    border-top: 1px solid rgba(212, 223, 210, 0.5) !important;
+  }
+
+  /* 4. Rover Container & Tall Mast Alignment */
+  .rover-interactive-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    width: 100% !important;
+    max-width: 500px !important;
+    margin: 0 auto !important;
+    padding-top: 20px !important;
+    text-align: center !important;
+    overflow: visible !important;
+  }
+
+  .rover-interactive-wrapper img {
+    max-width: 80% !important;
+    height: auto !important;
+    display: inline-block !important;
+  }
+
+  /* 5. Floating Stickers spread vertically into upper empty height */
+  .sih-floating-sticker {
+    position: absolute !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(10px) !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 12px !important;
+    padding: 6px 11px !important;
+    box-shadow: 0 6px 18px rgba(20, 33, 24, 0.07) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    z-index: 15 !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+    animation: floatSticker 4.5s ease-in-out infinite !important;
+  }
+
+  @keyframes floatSticker {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+  }
+
+  .sih-floating-sticker:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 24px rgba(45, 106, 79, 0.16) !important;
+    animation-play-state: paused !important;
+  }
+
+  .sticker-icon-box {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 7px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 0.82rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .s-title {
+    font-size: 0.73rem !important;
+    font-weight: 800 !important;
+    color: #142118 !important;
+    line-height: 1.2 !important;
+  }
+  .s-sub {
+    font-size: 0.64rem !important;
+    color: #55695c !important;
+    line-height: 1.2 !important;
+  }
+
+  /* 7 Cards evenly distributed top-to-bottom */
+  /* LEFT COLUMN */
+  .st-pos-1 { top: 0%;   left: -20px; animation-delay: 0.0s !important; }
+  .st-pos-6 { top: 22%;  left: -30px; animation-delay: 1.1s !important; }
+  .st-pos-7 { top: 46%;  left: -25px; animation-delay: 2.2s !important; }
+  .st-pos-4 { top: 70%;  left: -12px; animation-delay: 3.3s !important; }
+
+  /* RIGHT COLUMN */
+  .st-pos-2 { top: 6%;   right: -5px;  animation-delay: 0.6s !important; }
+  .st-pos-3 { top: 34%;  right: -15px; animation-delay: 1.8s !important; }
+  .st-pos-5 { top: 64%;  right: -8px;  animation-delay: 3.0s !important; }
+</style>
 </body>
 </html>
+
 
 
 
