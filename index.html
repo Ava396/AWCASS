@@ -1894,8 +1894,206 @@ document.addEventListener("DOMContentLoaded", function() {
   `;
 });
 </script>
+<style id="about-features-ui-polish">
+  /* About Section Badges & Typography */
+  .about-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #1e3d2f;
+    border: 1px solid rgba(45, 106, 79, 0.25);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+  }
+  
+  .about-heading {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 2.75rem !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    line-height: 1.15 !important;
+    margin-bottom: 20px;
+  }
+
+  .about-desc {
+    color: #4b5d52;
+    font-size: 1.02rem;
+    line-height: 1.65;
+    margin-bottom: 16px;
+  }
+
+  /* Interactive Pill Checklist Items */
+  .about-highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    margin-top: 24px;
+  }
+
+  .about-pill-item {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    background: #ffffff;
+    border: 1.5px solid #d4e3d2;
+    padding: 12px 18px;
+    border-radius: 16px;
+    box-shadow: 0 4px 12px rgba(20, 33, 24, 0.03);
+    font-weight: 600;
+    color: #1a2e22;
+    font-size: 0.95rem;
+    transition: transform 0.2s ease, border-color 0.2s ease;
+  }
+  .about-pill-item:hover {
+    transform: translateX(4px);
+    border-color: #2d6a4f;
+  }
+
+  .about-pill-item .check-icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    background: rgba(45, 106, 79, 0.14);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.95rem;
+    flex-shrink: 0;
+  }
+
+  /* Smart Features Section Cards Grid */
+  .features-container-wrap {
+    padding: 60px 0;
+  }
+
+  .feature-clean-card {
+    background: #ffffff;
+    border: 1.5px solid #d1dfcf;
+    border-radius: 20px;
+    padding: 28px 24px;
+    height: 100%;
+    transition: all 0.25s ease;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04);
+  }
+  .feature-clean-card:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 12px 28px rgba(45, 106, 79, 0.12);
+    border-color: #a3c4a0;
+  }
+
+  .feature-clean-card .card-icon-box {
+    width: 50px;
+    height: 50px;
+    border-radius: 14px;
+    background: rgba(45, 106, 79, 0.1);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.45rem;
+    margin-bottom: 20px;
+  }
+
+  .feature-clean-card h4 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin-bottom: 10px;
+  }
+
+  .feature-clean-card p {
+    color: #55695c;
+    font-size: 0.92rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>
+
+<script id="about-features-dom-sync">
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Upgrade About Us Left Info Column
+  const aboutHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => el.textContent.includes("Building a cleaner and smarter future"));
+  if (aboutHeading) {
+    const parentContainer = aboutHeading.closest(".col-lg-6, .col-md-6") || aboutHeading.parentElement;
+    if (parentContainer) {
+      parentContainer.innerHTML = `
+        <div class="about-badge">ABOUT AWCAS</div>
+        <h2 class="about-heading">Building a cleaner and smarter future.</h2>
+        <p class="about-desc">
+          <strong>AWCAS</strong> is an intelligent waste management and autonomous segregation system engineered to make municipal and industrial waste handling efficient, automated, and sustainable.
+        </p>
+        <p class="about-desc">
+          By combining AI-based computer vision, IoT sensory monitoring, and precision dual-servo robotics, the system classifies materials instantly into dedicated recyclable and dry bins.
+        </p>
+        <div class="about-highlights-list">
+          <div class="about-pill-item">
+            <span class="check-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Real-time AI-based Waste Classification (ESP32-CAM)</span>
+          </div>
+          <div class="about-pill-item">
+            <span class="check-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Automated 180° Dual-Servo Segregation Mechanism</span>
+          </div>
+          <div class="about-pill-item">
+            <span class="check-icon"><i class="bi bi-check-lg"></i></span>
+            <span>Continuous IoT Level & Fill-State Monitoring</span>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // 2. Upgrade Smart Features 4-Cards Row
+  const smartFeaturesHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => el.textContent.includes("Technology that makes waste smarter"));
+  if (smartFeaturesHeading) {
+    const featSection = smartFeaturesHeading.closest("section") || smartFeaturesHeading.closest(".container").parentElement;
+    const cardsRow = featSection.querySelector(".row:last-child, .row.g-4, .row.mt-4");
+    if (cardsRow) {
+      cardsRow.innerHTML = `
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-clean-card">
+            <div class="card-icon-box"><i class="bi bi-camera-viewfinder"></i></div>
+            <h4>AI Waste Detection</h4>
+            <p>Identifies and classifies incoming waste materials instantaneously using lightweight neural edge models.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-clean-card">
+            <div class="card-icon-box"><i class="bi bi-broadcast-pin"></i></div>
+            <h4>IoT Monitoring</h4>
+            <p>Monitors ultrasonic bin levels and tracks route telemetry in real time via ESP32 Wi-Fi architecture.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-clean-card">
+            <div class="card-icon-box"><i class="bi bi-robot"></i></div>
+            <h4>Auto Segregation</h4>
+            <p>Dual micro-servos rotate the classification trapdoor to guide items into discrete segregated compartments.</p>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-3">
+          <div class="feature-clean-card">
+            <div class="card-icon-box"><i class="bi bi-graph-up-arrow"></i></div>
+            <h4>Data Analytics</h4>
+            <p>Provides actionable insights on collection efficiency, weight metrics, and segregation precision.</p>
+          </div>
+        </div>
+      `;
+    }
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
