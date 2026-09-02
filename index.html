@@ -4083,8 +4083,113 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(fixKeyBenefitsCards, 300);
 });
 </script>
+<script id="force-rebuild-key-benefits">
+(function() {
+  function hardResetBenefits() {
+    const heading = Array.from(document.querySelectorAll("h2, h3, h4, h5, div")).find(el => 
+      el.textContent.trim() === "Key System Benefits"
+    );
+
+    if (heading) {
+      // Find the row or container right next to Key System Benefits
+      let container = heading.nextElementSibling;
+      while (container && !container.classList.contains("row") && !container.querySelector(".col, [class*='col-']")) {
+        container = container.nextElementSibling;
+      }
+
+      if (container) {
+        // Complete clean replacement without any legacy classes or conflicting wrappers
+        container.outerHTML = `
+          <div class="row g-3 mt-2 mb-4" id="clean-benefits-row">
+            <div class="col-lg col-md-4 col-sm-6">
+              <div class="site-card-pure">
+                <h5>Better Segregation</h5>
+                <p>Separates biodegradable &amp; non-biodegradable at source.</p>
+              </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6">
+              <div class="site-card-pure">
+                <h5>Automated Collection</h5>
+                <p>Reduces dependence on manual waste pickup rounds.</p>
+              </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6">
+              <div class="site-card-pure">
+                <h5>Scalable</h5>
+                <p>Deployable across campuses, hospitals &amp; societies.</p>
+              </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6">
+              <div class="site-card-pure">
+                <h5>Safer Handling</h5>
+                <p>Minimizes direct human contact with hazardous items.</p>
+              </div>
+            </div>
+            <div class="col-lg col-md-4 col-sm-6">
+              <div class="site-card-pure">
+                <h5>Future Ready</h5>
+                <p>Continuous AI improvements, live IoT &amp; telemetry.</p>
+              </div>
+            </div>
+          </div>
+        `;
+      }
+    }
+  }
+
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", hardResetBenefits);
+  } else {
+    hardResetBenefits();
+  }
+  setTimeout(hardResetBenefits, 300);
+})();
+</script>
+
+<style id="site-card-pure-css">
+  /* Universal Pure Card Style */
+  .site-card-pure {
+    background: #ffffff !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 20px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04) !important;
+    transition: all 0.25s ease !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    text-align: left !important;
+    box-sizing: border-box !important;
+    border-left: 1.5px solid #d4dfd2 !important; /* Force reset legacy border-left */
+  }
+
+  /* Universal Hover Effect */
+  .site-card-pure:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    border-left-color: #2d6a4f !important;
+    box-shadow: 0 12px 28px rgba(45, 106, 79, 0.12) !important;
+  }
+
+  .site-card-pure h5 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .site-card-pure p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #55695c !important;
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+</style>
 </body>
 </html>
+
 
 
 
