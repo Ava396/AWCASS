@@ -3761,8 +3761,82 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(applyImpactUniformity, 400);
 });
 </script>
+<style id="impact-cards-perfect-uniform">
+  /* 1. Reset all hardcoded borders and left-accents on Key System Benefits & Top row */
+  section:has(h2:contains("Impact & Benefits")) div,
+  section:has(h3:contains("Key System Benefits")) div {
+    border-left: none !important;
+  }
+
+  /* 2. Target each individual card inside both rows */
+  .impact-clean-card,
+  section:has(h2:contains("Impact & Benefits")) .row > div > div,
+  section:has(h3:contains("Key System Benefits")) .row > div > div,
+  div:has(> * > :contains("Less contamination")),
+  div:has(> * > :contains("Reduces direct manual")),
+  div:has(> * > :contains("Separates biodegradable")),
+  div:has(> * > :contains("Deployable across campuses")) {
+    background: #ffffff !important;
+    border: 1.5px solid #d8e5d6 !important;
+    border-radius: 20px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 4px 14px rgba(20, 33, 24, 0.03) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    cursor: pointer !important;
+  }
+
+  /* 3. Universal Site Hover Effect */
+  .impact-clean-card:hover,
+  section:has(h2:contains("Impact & Benefits")) .row > div > div:hover,
+  section:has(h3:contains("Key System Benefits")) .row > div > div:hover,
+  div:has(> * > :contains("Less contamination")):hover,
+  div:has(> * > :contains("Reduces direct manual")):hover,
+  div:has(> * > :contains("Separates biodegradable")):hover,
+  div:has(> * > :contains("Deployable across campuses")):hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 24px rgba(45, 106, 79, 0.12) !important;
+  }
+</style>
+
+<script id="impact-cards-dom-fix">
+document.addEventListener("DOMContentLoaded", function() {
+  function forceCardClasses() {
+    // Sabhi 10 cards ko unke unique titles se identify karein
+    const cardTitles = [
+      "Environmental", "Social Impact", "Economic", "Technological", "Community",
+      "Better Segregation", "Automated Collection", "Scalable", "Safer Handling", "Future Ready"
+    ];
+
+    cardTitles.forEach(title => {
+      const match = Array.from(document.querySelectorAll("h4, h5, h6, strong, div")).find(el => 
+        el.textContent.trim() === title
+      );
+      if (match) {
+        let cardContainer = match.closest(".col > div, [class*='col-'] > div, div[style*='border'], div[style*='background']");
+        if (cardContainer) {
+          // Inline styles reset
+          cardContainer.style.border = "";
+          cardContainer.style.borderLeft = "";
+          cardContainer.style.borderColor = "";
+          cardContainer.style.outline = "";
+          cardContainer.classList.add("impact-clean-card");
+        }
+      }
+    });
+  }
+
+  forceCardClasses();
+  setTimeout(forceCardClasses, 400);
+});
+</script>
 </body>
 </html>
+
 
 
 
