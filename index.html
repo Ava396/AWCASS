@@ -4735,8 +4735,218 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="sih-workflow-pipeline-style">
+  .sih-workflow-section {
+    padding: 70px 0;
+  }
+  .sih-step-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 20px !important;
+    padding: 22px 18px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04) !important;
+    transition: all 0.25s ease !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    position: relative !important;
+    box-sizing: border-box !important;
+  }
+  .sih-step-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 26px rgba(45, 106, 79, 0.12) !important;
+  }
+
+  .step-num-pill {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    font-weight: 800;
+    font-size: 0.82rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 12px;
+    border: 1px solid rgba(45, 106, 79, 0.25);
+  }
+
+  .sih-step-card h5 {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    font-size: 1.05rem !important;
+    margin-bottom: 6px !important;
+  }
+
+  .sih-step-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #55695c !important;
+    font-size: 0.85rem !important;
+    line-height: 1.5 !important;
+    margin: 0 !important;
+  }
+
+  .step-phase-badge {
+    font-size: 0.68rem;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: #ff6b35;
+    margin-bottom: 4px;
+    display: block;
+  }
+</style>
+
+<script id="sih-workflow-pipeline-script">
+document.addEventListener("DOMContentLoaded", function() {
+  const howItWorks = Array.from(document.querySelectorAll("h2, h3, h4")).find(el => 
+    el.textContent.includes("How It Works") || el.textContent.includes("HOW IT WORKS")
+  );
+
+  if (howItWorks) {
+    const parentSection = howItWorks.closest("section") || howItWorks.parentElement;
+    
+    // Existing list ya cards container ko check karein
+    let targetContainer = parentSection.querySelector(".container") || parentSection;
+    
+    // Workflow grid create karein based on Slide's 01 to 09 Cycle
+    const workflowDiv = document.createElement("div");
+    workflowDiv.className = "sih-workflow-section mt-4";
+    workflowDiv.innerHTML = `
+      <div class="row g-3">
+        <!-- 01 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 1: Demand</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">01</span>
+              <i class="bi bi-trash3 text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Trash Noticed</h5>
+            <p>User spots waste accumulated in classrooms, office cabins, or campus corridors.</p>
+          </div>
+        </div>
+
+        <!-- 02 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 1: Demand</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">02</span>
+              <i class="bi bi-phone text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Web Pickup Request</h5>
+            <p>User triggers a 1-tap on-demand collection request through the AWCAS portal.</p>
+          </div>
+        </div>
+
+        <!-- 03 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 2: Dispatch</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">03</span>
+              <i class="bi bi-box-arrow-right text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Rover Dispatched</h5>
+            <p>ESP32 telemetry signals the docked robot to undock and initialize motors.</p>
+          </div>
+        </div>
+
+        <!-- 04 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 2: Dispatch</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">04</span>
+              <i class="bi bi-signpost-2 text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Autonomous Navigation</h5>
+            <p>Rover follows line markers and uses ultrasonic sensors to navigate directly to the user.</p>
+          </div>
+        </div>
+
+        <!-- 05 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 3: Collection</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">05</span>
+              <i class="bi bi-person-walking text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Zero-Touch Intake</h5>
+            <p>User drops unsegregated waste directly into the intake tray without physical touching.</p>
+          </div>
+        </div>
+
+        <!-- 06 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 4: Segregation</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">06</span>
+              <i class="bi bi-camera text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>ESP32-CAM AI Scan</h5>
+            <p>Overhead camera captures frame and edge neural classifier categorizes waste type.</p>
+          </div>
+        </div>
+
+        <!-- 07 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 4: Segregation</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">07</span>
+              <i class="bi bi-arrows-split text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Dual-Bin Sorting</h5>
+            <p>Actuator servo flaps divert item cleanly into either Biodegradable or Recyclable bin.</p>
+          </div>
+        </div>
+
+        <!-- 08 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 5: Unloading</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">08</span>
+              <i class="bi bi-arrow-repeat text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Conveyor Discharge</h5>
+            <p>At destination, conveyor lifts the sorted waste tray and tips it into designated main bins.</p>
+          </div>
+        </div>
+
+        <!-- 09 -->
+        <div class="col-lg-4 col-md-6">
+          <div class="sih-step-card">
+            <span class="step-phase-badge">Phase 5: Unloading</span>
+            <div class="d-flex align-items-center justify-content-between">
+              <span class="step-num-pill">09</span>
+              <i class="bi bi-battery-charging text-muted" style="font-size: 1.2rem;"></i>
+            </div>
+            <h5>Dock Station Standby</h5>
+            <p>Rover returns autonomously to dock station, recharging and awaiting the next pickup call.</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    // Purane steps ko clean karke naye pipeline se replace karein
+    const oldStepRows = parentSection.querySelectorAll(".row");
+    oldStepRows.forEach(r => r.remove());
+    targetContainer.appendChild(workflowDiv);
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
