@@ -3490,8 +3490,22 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<script id="map-pinpoint-patch">
+document.addEventListener("DOMContentLoaded", function() {
+  const mapIframe = document.querySelector(".loc-map-frame-box iframe, iframe[src*='maps']");
+  if (mapIframe) {
+    // Exact pinned coordinates for ITER, SOA University, Campus 1, Bhubaneswar with visible marker
+    mapIframe.src = "https://maps.google.com/maps?q=20.2520,85.7955+(ITER+-+Siksha+'O'+Anusandhan,+Bhubaneswar)&t=&z=16&ie=UTF8&iwloc=B&output=embed";
+    mapIframe.style.width = "100%";
+    mapIframe.style.height = "100%";
+    mapIframe.style.minHeight = "420px";
+    mapIframe.style.border = "none";
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
