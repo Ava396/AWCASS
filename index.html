@@ -4944,8 +4944,162 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="rover-rich-stickers-style">
+  /* Rover relative container */
+  .rover-interactive-wrapper {
+    position: relative !important;
+    display: inline-block !important;
+    width: 100% !important;
+    text-align: center !important;
+  }
+
+  /* Universal sticker badge styling */
+  .sih-floating-sticker {
+    position: absolute !important;
+    background: rgba(255, 255, 255, 0.96) !important;
+    backdrop-filter: blur(12px) !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 16px !important;
+    padding: 9px 14px !important;
+    box-shadow: 0 8px 24px rgba(20, 33, 24, 0.1) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 10px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    transition: all 0.25s ease !important;
+    z-index: 15 !important;
+    cursor: pointer !important;
+    text-align: left !important;
+    white-space: nowrap !important;
+  }
+
+  .sih-floating-sticker:hover {
+    transform: translateY(-4px) scale(1.03) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 14px 30px rgba(45, 106, 79, 0.18) !important;
+  }
+
+  .sticker-icon-box {
+    width: 32px !important;
+    height: 32px !important;
+    border-radius: 10px !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1rem !important;
+    flex-shrink: 0 !important;
+  }
+
+  .s-title {
+    font-size: 0.78rem !important;
+    font-weight: 800 !important;
+    color: #142118 !important;
+    line-height: 1.2 !important;
+  }
+  .s-sub {
+    font-size: 0.69rem !important;
+    color: #55695c !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Positions across the Rover Prototype */
+  .st-top-left { top: 12%; left: -35px; }
+  .st-mid-left { top: 52%; left: -45px; }
+  .st-bottom-left { bottom: 6%; left: -25px; }
+  .st-bottom-right { bottom: 10%; right: -25px; }
+  .st-top-right { top: 14%; right: -15px; }
+
+  @media (max-width: 991px) {
+    .sih-floating-sticker {
+      position: static !important;
+      margin: 8px auto !important;
+      display: flex !important;
+      width: fit-content !important;
+    }
+  }
+</style>
+
+<script id="rover-rich-stickers-dom">
+document.addEventListener("DOMContentLoaded", function() {
+  const roverImg = document.querySelector("img[src*='rover'], .hero-section img, section:first-of-type img");
+  if (!roverImg) return;
+
+  let wrapper = roverImg.closest(".rover-interactive-wrapper");
+  if (!wrapper) {
+    wrapper = document.createElement("div");
+    wrapper.className = "rover-interactive-wrapper";
+    roverImg.parentNode.insertBefore(wrapper, roverImg);
+    wrapper.appendChild(roverImg);
+  }
+
+  // Remove existing stickers to rebuild all points cleanly
+  wrapper.querySelectorAll(".hero-rover-sticker, .sih-floating-sticker").forEach(el => el.remove());
+
+  // 1. ESP32-CAM AI Scan
+  const s1 = document.createElement("div");
+  s1.className = "sih-floating-sticker st-top-left";
+  s1.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(45, 106, 79, 0.12); color: #2d6a4f;"><i class="bi bi-camera-fill"></i></div>
+    <div>
+      <div class="s-title">06. ESP32-CAM AI</div>
+      <div class="s-sub">Edge Source Classification</div>
+    </div>
+  `;
+
+  // 2. Dual Bins Segregation
+  const s2 = document.createElement("div");
+  s2.className = "sih-floating-sticker st-mid-left";
+  s2.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(36, 161, 72, 0.15); color: #24a148;"><i class="bi bi-recycle"></i></div>
+    <div>
+      <div class="s-title">07. Dual Sort Bins</div>
+      <div class="s-sub">Bio & Non-Biodegradable</div>
+    </div>
+  `;
+
+  // 3. Web Pickup Request
+  const s3 = document.createElement("div");
+  s3.className = "sih-floating-sticker st-bottom-left";
+  s3.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(13, 110, 253, 0.12); color: #0d6efd;"><i class="bi bi-phone-fill"></i></div>
+    <div>
+      <div class="s-title">02. On-Demand Request</div>
+      <div class="s-sub">User 1-Tap Portal Trigger</div>
+    </div>
+  `;
+
+  // 4. Autonomous Navigation
+  const s4 = document.createElement("div");
+  s4.className = "sih-floating-sticker st-bottom-right";
+  s4.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(235, 94, 40, 0.12); color: #eb5e28;"><i class="bi bi-compass-fill"></i></div>
+    <div>
+      <div class="s-title">04. Autonomous Navigation</div>
+      <div class="s-sub">Dock &lt;-&gt; User Line Tracking</div>
+    </div>
+  `;
+
+  // 5. Dock Station
+  const s5 = document.createElement("div");
+  s5.className = "sih-floating-sticker st-top-right";
+  s5.innerHTML = `
+    <div class="sticker-icon-box" style="background: rgba(114, 9, 183, 0.12); color: #7209b7;"><i class="bi bi-ev-station-fill"></i></div>
+    <div>
+      <div class="s-title">09. Dock Station</div>
+      <div class="s-sub">Auto-Return & Recharge</div>
+    </div>
+  `;
+
+  wrapper.appendChild(s1);
+  wrapper.appendChild(s2);
+  wrapper.appendChild(s3);
+  wrapper.appendChild(s4);
+  wrapper.appendChild(s5);
+});
+</script>
 </body>
 </html>
+
 
 
 
