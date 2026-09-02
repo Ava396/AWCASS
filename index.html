@@ -3674,8 +3674,96 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(applyUniformCards, 500);
 });
 </script>
+<style id="impact-benefits-uniform-cards">
+  /* Impact section badge */
+  .impact-badge-pill {
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+    background: rgba(45, 106, 79, 0.12) !important;
+    color: #2d6a4f !important;
+    border: 1px solid rgba(45, 106, 79, 0.22) !important;
+    padding: 6px 16px !important;
+    border-radius: 50px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase !important;
+    margin-bottom: 18px !important;
+  }
+  .impact-badge-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  /* Impact & Benefits Cards Strict Uniformity */
+  .impact-standard-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d8e5d6 !important;
+    border-radius: 22px !important;
+    padding: 28px 24px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.03) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    outline: none !important;
+  }
+
+  /* Same hover effect across all cards */
+  .impact-standard-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 26px rgba(45, 106, 79, 0.1) !important;
+  }
+</style>
+
+<script id="impact-benefits-runtime-script">
+document.addEventListener("DOMContentLoaded", function() {
+  function applyImpactUniformity() {
+    // 1. Heading badge check
+    const impactHead = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+      el.textContent.includes("Impact & Benefits") || el.textContent.includes("Segregation Efficiency") || el.textContent.includes("COMPARISON")
+    );
+
+    if (impactHead) {
+      const section = impactHead.closest("section") || impactHead.closest(".container");
+      if (section) {
+        // Find comparison cards, canvas chart boxes, or benefit containers
+        const cards = section.querySelectorAll(".card, .col-lg-6 > div, .col-md-6 > div, div:has(> canvas)");
+        cards.forEach(card => {
+          // Remove conflicting hardcoded styles
+          card.style.border = "";
+          card.style.borderColor = "";
+          card.style.outline = "";
+          card.classList.add("impact-standard-card");
+        });
+      }
+    }
+
+    // Direct comparison card lookup (COMPARISON 01 & COMPARISON 02)
+    const compHeaders = Array.from(document.querySelectorAll("span, div, h4, h5")).filter(el => 
+      el.textContent.includes("COMPARISON 01") || el.textContent.includes("COMPARISON 02")
+    );
+
+    compHeaders.forEach(ch => {
+      const targetCard = ch.closest(".card, .col-lg-6 > div, .col-md-6 > div, div[class*='col'] > div");
+      if (targetCard) {
+        targetCard.style.border = "";
+        targetCard.classList.add("impact-standard-card");
+      }
+    });
+  }
+
+  applyImpactUniformity();
+  setTimeout(applyImpactUniformity, 400);
+});
+</script>
 </body>
 </html>
+
 
 
 
