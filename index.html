@@ -4390,8 +4390,103 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+<style id="navbar-dark-forest-style">
+  /* 1. Navbar Container with Footer Theme */
+  nav, .navbar, header nav {
+    background: #0f2419 !important;
+    background-color: #0f2419 !important;
+    border-bottom: 1.5px solid rgba(45, 106, 79, 0.4) !important;
+    box-shadow: 0 4px 20px rgba(10, 25, 17, 0.4) !important;
+    transition: all 0.3s ease !important;
+    padding: 16px 0 !important;
+  }
+
+  /* 2. Logo / Brand Name */
+  .navbar-brand,
+  nav .navbar-brand,
+  header .navbar-brand,
+  nav a[href*="index"],
+  nav a:has(svg, i, img) {
+    color: #ffffff !important;
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800 !important;
+    letter-spacing: -0.02em !important;
+    font-size: 1.45rem !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 8px !important;
+  }
+  .navbar-brand i,
+  .navbar-brand svg {
+    color: #52b788 !important;
+    fill: #52b788 !important;
+  }
+
+  /* 3. Navigation Links */
+  .navbar-nav .nav-link,
+  nav ul li a,
+  nav .nav-item a {
+    color: #c9decb !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 600 !important;
+    font-size: 0.93rem !important;
+    padding: 8px 14px !important;
+    transition: all 0.2s ease !important;
+  }
+  .navbar-nav .nav-link:hover,
+  nav ul li a:hover,
+  nav .nav-item a:hover {
+    color: #52b788 !important;
+    transform: translateY(-1px) !important;
+  }
+
+  /* Active Nav Link */
+  .navbar-nav .nav-link.active,
+  nav ul li a.active {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+  }
+
+  /* 4. "Get In Touch ->" CTA Pill Button */
+  nav a[href*="contact"],
+  nav a:contains("Get In Touch"),
+  .nav-btn-touch {
+    background: #24a148 !important;
+    color: #ffffff !important;
+    border-radius: 50px !important;
+    padding: 8px 20px !important;
+    font-weight: 700 !important;
+    font-size: 0.88rem !important;
+    text-decoration: none !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    gap: 6px !important;
+    box-shadow: 0 4px 14px rgba(36, 161, 72, 0.3) !important;
+    transition: all 0.2s ease !important;
+  }
+  nav a[href*="contact"]:hover,
+  nav a:contains("Get In Touch"):hover,
+  .nav-btn-touch:hover {
+    background: #2d6a4f !important;
+    transform: translateY(-2px) !important;
+    box-shadow: 0 6px 18px rgba(45, 106, 79, 0.45) !important;
+    color: #ffffff !important;
+  }
+</style>
+
+<script id="navbar-dark-brand-fix">
+document.addEventListener("DOMContentLoaded", function() {
+  // Brand name ko SMARTWASTE se clean AWCAS me sync karein
+  document.querySelectorAll(".navbar-brand, nav a").forEach(el => {
+    if (el.textContent.trim().toUpperCase() === "SMARTWASTE") {
+      el.innerHTML = '<i class="bi bi-recycle" style="color: #52b788; margin-right: 6px;"></i> AWCAS';
+    }
+  });
+});
+</script>
 </body>
 </html>
+
 
 
 
