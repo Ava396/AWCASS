@@ -4310,8 +4310,57 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(polishWhyAwcas, 350);
 });
 </script>
+<script id="why-awcas-big-card-patch">
+(function() {
+  function applyBigCardEffect() {
+    // Unique badge dhoondo jo is bade container ke top par hai
+    const badge = Array.from(document.querySelectorAll("*")).find(el => 
+      el.textContent.trim() === "WHY AWCAS?" && el.children.length === 0
+    );
+
+    if (!badge) return;
+
+    // Is badge ka sabse bada parent container (outer card) nikalna
+    let bigCard = badge.parentElement;
+    while (bigCard && bigCard.tagName !== "BODY" && bigCard.tagName !== "MAIN" && !bigCard.classList.contains("section")) {
+      // Agar ye container white background ya rounded border wala main wrapper hai
+      const style = window.getComputedStyle(bigCard);
+      if (style.backgroundColor === "rgb(255, 255, 255)" || bigCard.classList.contains("container") || bigCard.classList.contains("card")) {
+        break;
+      }
+      bigCard = bigCard.parentElement;
+    }
+
+    // Agar container mil gaya toh direct site standard styles attach karo
+    if (bigCard) {
+      bigCard.style.setProperty("background", "#ffffff", "important");
+      bigCard.style.setProperty("border", "1.5px solid #d4dfd2", "important");
+      bigCard.style.setProperty("border-radius", "28px", "important");
+      bigCard.style.setProperty("box-shadow", "0 4px 16px rgba(20, 33, 24, 0.04)", "important");
+      bigCard.style.setProperty("transition", "all 0.25s ease", "important");
+      bigCard.style.setProperty("cursor", "pointer", "important");
+
+      bigCard.onmouseenter = function() {
+        this.style.setProperty("transform", "translateY(-4px)", "important");
+        this.style.setProperty("border-color", "#2d6a4f", "important");
+        this.style.setProperty("box-shadow", "0 12px 28px rgba(45, 106, 79, 0.12)", "important");
+      };
+
+      bigCard.onmouseleave = function() {
+        this.style.setProperty("transform", "translateY(0px)", "important");
+        this.style.setProperty("border-color", "#d4dfd2", "important");
+        this.style.setProperty("box-shadow", "0 4px 16px rgba(20, 33, 24, 0.04)", "important");
+      };
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", applyBigCardEffect);
+  setInterval(applyBigCardEffect, 500);
+})();
+</script>
 </body>
 </html>
+
 
 
 
