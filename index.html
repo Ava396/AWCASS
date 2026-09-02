@@ -3834,8 +3834,55 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(forceCardClasses, 400);
 });
 </script>
+<style id="force-card-shade-effect">
+  /* 1. Ensure parent containers allow shadow to be visible */
+  section, .container, .row, [class*="col-"] {
+    overflow: visible !important;
+  }
+
+  /* 2. Initial state with visible soft depth shade */
+  .impact-clean-card,
+  .awcas-standard-card,
+  section:has(h2:contains("Impact & Benefits")) .row > div > div,
+  section:has(h3:contains("Key System Benefits")) .row > div > div,
+  div:has(> * > :contains("Less contamination")),
+  div:has(> * > :contains("Reduces direct manual")),
+  div:has(> * > :contains("Separates biodegradable")),
+  div:has(> * > :contains("Deployable across campuses")),
+  div:has(> * > :contains("Adoption Demand")),
+  div:has(> * > :contains("Cost-Efficiency Index")),
+  div:has(> * > :contains("Hardware Integration")) {
+    background: #ffffff !important;
+    border: 1.5px solid #d4e3d3 !important;
+    border-radius: 20px !important;
+    box-shadow: 0 6px 18px rgba(25, 45, 30, 0.08) !important;
+    transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    position: relative !important;
+    z-index: 1 !important;
+    cursor: pointer !important;
+  }
+
+  /* 3. High-visibility hover lift & prominent green glow shade */
+  .impact-clean-card:hover,
+  .awcas-standard-card:hover,
+  section:has(h2:contains("Impact & Benefits")) .row > div > div:hover,
+  section:has(h3:contains("Key System Benefits")) .row > div > div:hover,
+  div:has(> * > :contains("Less contamination")):hover,
+  div:has(> * > :contains("Reduces direct manual")):hover,
+  div:has(> * > :contains("Separates biodegradable")):hover,
+  div:has(> * > :contains("Deployable across campuses")):hover,
+  div:has(> * > :contains("Adoption Demand")):hover,
+  div:has(> * > :contains("Cost-Efficiency Index")):hover,
+  div:has(> * > :contains("Hardware Integration")):hover {
+    transform: translateY(-6px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 16px 32px rgba(45, 106, 79, 0.22) !important;
+    z-index: 5 !important;
+  }
+</style>
 </body>
 </html>
+
 
 
 
