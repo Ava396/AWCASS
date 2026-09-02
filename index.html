@@ -2394,8 +2394,82 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="smart-features-header-polish">
+  /* 1. Pill Badge Styling */
+  .sf-pill-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.76rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.1em !important;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .sf-pill-badge::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  /* 2. Main Heading Typography */
+  .sf-main-title {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 3.1rem !important;
+    line-height: 1.15 !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 auto 16px auto !important;
+    max-width: 720px;
+  }
+
+  /* 3. Subtitle Description */
+  .sf-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #4b5d52 !important;
+    font-size: 1.05rem !important;
+    font-weight: 400 !important;
+    line-height: 1.6 !important;
+    margin: 0 auto !important;
+    max-width: 540px;
+  }
+</style>
+
+<script id="smart-features-header-script">
+document.addEventListener("DOMContentLoaded", function() {
+  const featHeading = Array.from(document.querySelectorAll("h2, h3, .section-title")).find(el => 
+    el.textContent.includes("Technology that makes waste smarter")
+  );
+
+  if (featHeading) {
+    const parentContainer = featHeading.parentElement;
+    
+    // Purana raw text badge dhund ke hatao ya replace karo
+    const prevBadge = parentContainer.querySelector("p, span, small");
+    
+    parentContainer.innerHTML = `
+      <div class="text-center mb-5">
+        <div class="sf-pill-badge">SMART FEATURES</div>
+        <h2 class="sf-main-title">Technology that makes waste smarter.</h2>
+        <p class="sf-subtitle">An integrated ecosystem combining AI, IoT and robotics.</p>
+      </div>
+    `;
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
