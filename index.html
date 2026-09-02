@@ -2286,8 +2286,117 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="smart-features-clean-polish">
+  /* 1. Remove Any Ghost/Stuck Floating Pills at Top */
+  body > .about-pill-item,
+  body > div > .about-pill-item,
+  div[style*="position: fixed"]:has(.about-pill-item),
+  .about-highlights-list {
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* 2. Compact, Sleek Modern Cards for Smart Features */
+  .smart-feature-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+    gap: 20px;
+    margin-top: 36px;
+    margin-bottom: 20px;
+  }
+
+  .smart-feat-card {
+    background: #ffffff;
+    border: 1.5px solid #d8e5d6;
+    border-radius: 18px;
+    padding: 24px 20px;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+    box-shadow: 0 4px 14px rgba(30, 42, 34, 0.04);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .smart-feat-card:hover {
+    transform: translateY(-4px);
+    border-color: #2d6a4f;
+    box-shadow: 0 12px 24px rgba(45, 106, 79, 0.1);
+  }
+
+  .smart-feat-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(45, 106, 79, 0.1);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    margin-bottom: 16px;
+  }
+
+  .smart-feat-card h4 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .smart-feat-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #55695c !important;
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+</style>
+
+<script id="smart-features-clean-script">
+document.addEventListener("DOMContentLoaded", function() {
+  // Purane stuck elements ko remove karein jo body pe galat append ho gaye the
+  document.querySelectorAll("body > .about-pill-item, body > div.about-pill-item").forEach(el => el.remove());
+
+  // Smart Features section ko compact aur perfectly aligned banayein
+  const featHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => el.textContent.includes("Technology that makes waste smarter"));
+  if (featHeading) {
+    const featSection = featHeading.closest("section") || featHeading.closest(".container").parentElement;
+    const cardsRow = featSection.querySelector(".row:last-child, .row.g-4, .row.mt-4, .row.g-3, .smart-feature-grid");
+    
+    if (cardsRow) {
+      cardsRow.outerHTML = `
+        <div class="smart-feature-grid">
+          <div class="smart-feat-card">
+            <div class="smart-feat-icon"><i class="bi bi-camera-viewfinder"></i></div>
+            <h4>AI Waste Detection</h4>
+            <p>Identifies and classifies incoming waste materials instantaneously using lightweight neural edge models.</p>
+          </div>
+          <div class="smart-feat-card">
+            <div class="smart-feat-icon"><i class="bi bi-broadcast"></i></div>
+            <h4>IoT Monitoring</h4>
+            <p>Monitors ultrasonic bin levels and tracks route telemetry in real time via ESP32 Wi-Fi architecture.</p>
+          </div>
+          <div class="smart-feat-card">
+            <div class="smart-feat-icon"><i class="bi bi-robot"></i></div>
+            <h4>Auto Segregation</h4>
+            <p>Dual micro-servos rotate the classification trapdoor to guide items into discrete segregated compartments.</p>
+          </div>
+          <div class="smart-feat-card">
+            <div class="smart-feat-icon"><i class="bi bi-bar-chart-line"></i></div>
+            <h4>Data Analytics</h4>
+            <p>Provides actionable insights on collection efficiency, weight metrics, and segregation precision.</p>
+          </div>
+        </div>
+      `;
+    }
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
