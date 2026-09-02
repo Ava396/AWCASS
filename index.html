@@ -3074,8 +3074,281 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="contact-footer-polish-style">
+  /* Contact Section Container */
+  .contact-master-section {
+    padding: 70px 0 60px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .contact-wrapper-card {
+    background: #ffffff;
+    border: 1.5px solid #d4dfd2;
+    border-radius: 32px;
+    padding: 50px 45px;
+    box-shadow: 0 10px 30px rgba(20, 33, 24, 0.04);
+  }
+
+  /* Badge */
+  .contact-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .contact-badge-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  /* Typography */
+  .contact-title {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 2.8rem !important;
+    line-height: 1.15 !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 16px !important;
+  }
+
+  .contact-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #526658 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 28px !important;
+  }
+
+  /* Contact Meta details */
+  .contact-meta-row {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .contact-meta-item {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    color: #1e3d2f;
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+  .contact-meta-item i {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+    background: rgba(45, 106, 79, 0.1);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+  }
+
+  /* Input Elements */
+  .form-control-awcas {
+    width: 100%;
+    background: #f7faf6;
+    border: 1.5px solid #d4dfd2;
+    border-radius: 14px;
+    padding: 14px 18px;
+    font-family: 'Plus Jakarta Sans', sans-serif;
+    font-size: 0.92rem;
+    color: #142118;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s, box-shadow 0.2s;
+  }
+  .form-control-awcas:focus {
+    background: #ffffff;
+    border-color: #2d6a4f;
+    box-shadow: 0 0 0 4px rgba(45, 106, 79, 0.12);
+  }
+
+  /* Submit Pill Button */
+  .btn-submit-contact {
+    background: #24a148 !important;
+    color: #ffffff !important;
+    border: none !important;
+    border-radius: 50px !important;
+    padding: 13px 32px !important;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-weight: 700 !important;
+    font-size: 0.95rem !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    box-shadow: 0 6px 18px rgba(36, 161, 72, 0.25);
+    transition: all 0.2s ease;
+  }
+  .btn-submit-contact:hover {
+    background: #1e873c !important;
+    transform: translateY(-2px);
+    box-shadow: 0 8px 22px rgba(36, 161, 72, 0.32);
+  }
+
+  /* Footer Clean Styling */
+  .awcas-footer-block {
+    padding: 40px 0 30px 0;
+    border-top: 1.5px solid #d4dfd2;
+    margin-top: 50px;
+  }
+
+  .footer-logo-title {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 800;
+    font-size: 1.35rem;
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 6px;
+  }
+
+  .footer-tagline {
+    font-size: 0.9rem;
+    color: #55695c;
+    margin: 0;
+  }
+
+  .footer-links-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    justify-content: flex-end;
+  }
+  .footer-links-group a {
+    color: #2d4536;
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 0.9rem;
+    transition: color 0.2s;
+  }
+  .footer-links-group a:hover {
+    color: #24a148;
+  }
+
+  .copyright-line {
+    text-align: center;
+    color: #687f70;
+    font-size: 0.85rem;
+    margin-top: 30px;
+    padding-top: 20px;
+    border-top: 1px solid rgba(45, 106, 79, 0.1);
+  }
+</style>
+
+<script id="contact-footer-dom-script">
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Locate Contact Section
+  const contactHead = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+    el.textContent.includes("Let's build a cleaner future") || el.textContent.includes("CONTACT US")
+  );
+
+  if (contactHead) {
+    let sec = contactHead.closest("section") || contactHead.closest(".container");
+    if (!sec) sec = contactHead.parentElement;
+
+    sec.innerHTML = `
+      <div class="container contact-master-section">
+        <div class="contact-wrapper-card">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-5 text-start">
+              <div class="contact-badge-pill">CONTACT US</div>
+              <h2 class="contact-title">Let's build a cleaner future.</h2>
+              <p class="contact-desc">
+                Have an idea, research collaboration, or question about autonomous waste robotics? Send our engineering team a message.
+              </p>
+              
+              <div class="contact-meta-row">
+                <div class="contact-meta-item">
+                  <i class="bi bi-envelope"></i>
+                  <span>awcas.robotics@gmail.com</span>
+                </div>
+                <div class="contact-meta-item">
+                  <i class="bi bi-telephone"></i>
+                  <span>+91 94370 XXXXX</span>
+                </div>
+                <div class="contact-meta-item">
+                  <i class="bi bi-geo-alt"></i>
+                  <span>SOA Campus 1, Bhubaneswar</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <form onsubmit="event.preventDefault(); alert('Thank you for reaching out to AWCAS Team!');">
+                <div class="row g-3">
+                  <div class="col-md-6">
+                    <input type="text" class="form-control-awcas" placeholder="Your Name" required>
+                  </div>
+                  <div class="col-md-6">
+                    <input type="email" class="form-control-awcas" placeholder="Your Email" required>
+                  </div>
+                  <div class="col-12">
+                    <input type="text" class="form-control-awcas" placeholder="Subject" required>
+                  </div>
+                  <div class="col-12">
+                    <textarea class="form-control-awcas" rows="4" placeholder="Your Message" required></textarea>
+                  </div>
+                  <div class="col-12 text-start mt-4">
+                    <button type="submit" class="btn-submit-contact">
+                      <span>Send Message</span>
+                      <i class="bi bi-arrow-right"></i>
+                    </button>
+                  </div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+
+        <div class="awcas-footer-block">
+          <div class="row align-items-center gy-3">
+            <div class="col-md-6 text-start">
+              <div class="footer-logo-title"><i class="bi bi-recycle"></i> AWCAS</div>
+              <p class="footer-tagline">Automated Waste Collection and Segregation System.</p>
+            </div>
+            <div class="col-md-6">
+              <div class="footer-links-group">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#features">Features</a>
+                <a href="#hardware">Hardware</a>
+                <a href="#contact">Contact</a>
+              </div>
+            </div>
+          </div>
+          <div class="copyright-line">
+            &copy; 2026 AWCAS Project. All Rights Reserved.
+          </div>
+        </div>
+      </div>
+    `;
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
