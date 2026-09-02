@@ -1754,8 +1754,149 @@ document.addEventListener("DOMContentLoaded", function() {
     }
 });
 </script>
+<style id="hero-clean-ui-fix">
+  /* Hero Left Column Layout */
+  .hero-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #1e3d2f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 14px;
+    border-radius: 50px;
+    font-size: 0.76rem;
+    font-weight: 700;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin-bottom: 20px;
+  }
+  .hero-badge-pill::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  .hero-main-heading {
+    font-family: 'Newsreader', Georgia, serif;
+    font-size: 3.4rem;
+    line-height: 1.12;
+    font-weight: 700;
+    color: #16241b;
+    margin-bottom: 18px;
+    letter-spacing: -0.5px;
+  }
+
+  .hero-subtext {
+    color: #4b5d52;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    max-width: 480px;
+    margin-bottom: 28px;
+  }
+
+  /* Action Buttons */
+  .hero-btn-group {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+  .btn-green-solid {
+    background: #24a148 !important;
+    color: #ffffff !important;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 12px 26px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    box-shadow: 0 6px 18px rgba(36, 161, 72, 0.25);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+  }
+  .btn-green-solid:hover {
+    background: #1e873c !important;
+    transform: translateY(-2px);
+  }
+  .btn-light-outline {
+    background: rgba(255, 255, 255, 0.7) !important;
+    color: #1a3325 !important;
+    border: 1.5px solid #a8c9ab !important;
+    font-weight: 700;
+    font-size: 0.92rem;
+    padding: 11px 22px;
+    border-radius: 50px;
+    text-decoration: none !important;
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    transition: all 0.2s ease;
+  }
+  .btn-light-outline:hover {
+    background: #ffffff !important;
+    transform: translateY(-2px);
+  }
+
+  /* Horizontal Tech Chips */
+  .hero-tech-chips {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 18px 24px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(45, 106, 79, 0.12);
+  }
+  .hero-tech-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: #19271e;
+  }
+  .hero-tech-chip i {
+    color: #2d6a4f;
+    font-size: 1.15rem;
+  }
+</style>
+
+<script id="hero-clean-ui-script">
+document.addEventListener("DOMContentLoaded", function() {
+  const leftCol = document.querySelector(".hero .col-lg-6:first-child, section:first-of-type .col-lg-6:first-child, section:first-of-type .col-md-6:first-child");
+  if (!leftCol) return;
+
+  leftCol.innerHTML = `
+    <div class="hero-badge-pill">ESP32 + AI Powered &bull; Smart Segregation</div>
+    <h1 class="hero-main-heading">
+      Automated Waste<br>
+      Collection And<br>
+      Segregation
+    </h1>
+    <p class="hero-subtext">
+      Transforming waste management with <strong>Artificial Intelligence, IoT and Robotics</strong> for automated detection, intelligent segregation and a cleaner tomorrow.
+    </p>
+    <div class="hero-btn-group">
+      <a href="#features" class="btn-green-solid">Explore System</a>
+      <a href="#demo" class="btn-light-outline">
+        <i class="bi bi-play-circle-fill" style="color: #2d6a4f;"></i> Watch Demo
+      </a>
+    </div>
+    <div class="hero-tech-chips">
+      <span class="hero-tech-chip"><i class="bi bi-cpu"></i> ESP32 Controller</span>
+      <span class="hero-tech-chip"><i class="bi bi-camera"></i> ESP32-CAM AI</span>
+      <span class="hero-tech-chip"><i class="bi bi-gear-wide-connected"></i> Dual Servo Array</span>
+      <span class="hero-tech-chip"><i class="bi bi-compass"></i> IR Line Tracking</span>
+    </div>
+  `;
+});
+</script>
 </body>
 </html>
+
 
 
 
