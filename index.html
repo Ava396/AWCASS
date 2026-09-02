@@ -5274,8 +5274,47 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(purgeSihBadge, 300);
 })();
 </script>
+<style id="equalize-sticker-dimensions">
+  /* Force all 7 stickers to have identical sizing and box model */
+  .sih-floating-sticker,
+  .st-pos-4,
+  .st-pos-5 {
+    width: auto !important;
+    min-width: 175px !important;
+    max-width: 215px !important;
+    padding: 6px 11px !important;
+    border-radius: 12px !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Equalize title and subtitle text across 04 and 05 */
+  .st-pos-4 .s-title,
+  .st-pos-5 .s-title {
+    font-size: 0.73rem !important;
+    font-weight: 800 !important;
+    color: #142118 !important;
+    line-height: 1.2 !important;
+  }
+
+  .st-pos-4 .s-sub,
+  .st-pos-5 .s-sub {
+    font-size: 0.64rem !important;
+    color: #55695c !important;
+    line-height: 1.2 !important;
+  }
+
+  /* Equalize icon square dimensions */
+  .st-pos-4 .sticker-icon-box,
+  .st-pos-5 .sticker-icon-box {
+    width: 26px !important;
+    height: 26px !important;
+    border-radius: 7px !important;
+    font-size: 0.82rem !important;
+  }
+</style>
 </body>
 </html>
+
 
 
 
