@@ -2693,8 +2693,196 @@ document.addEventListener("DOMContentLoaded", function() {
     margin-bottom: 16px !important;
   }
 </style>
+<style id="how-it-works-polish">
+  /* Section Spacing */
+  #how-it-works,
+  section:has(h2:contains("From waste to intelligent action")),
+  div:has(> * > .hiw-badge-pill) {
+    padding: 60px 0 70px 0 !important;
+  }
+
+  /* Badge */
+  .hiw-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hiw-badge-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  /* Title */
+  .hiw-title {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 3.1rem !important;
+    line-height: 1.15 !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    letter-spacing: -0.02em !important;
+    margin: 0 auto 40px auto !important;
+    max-width: 680px;
+  }
+
+  /* 4 Steps Grid */
+  .hiw-steps-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+  }
+  @media (max-width: 991px) {
+    .hiw-steps-grid {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 575px) {
+    .hiw-steps-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .hiw-step-card {
+    background: #ffffff;
+    border: 1.5px solid #d8e5d6;
+    border-radius: 22px;
+    padding: 26px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.03);
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hiw-step-card:hover {
+    transform: translateY(-4px);
+    border-color: #2d6a4f;
+    box-shadow: 0 10px 24px rgba(45, 106, 79, 0.09);
+  }
+
+  .hiw-top-row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 16px;
+  }
+
+  .hiw-step-num {
+    font-family: 'Outfit', sans-serif;
+    font-weight: 800;
+    font-size: 0.85rem;
+    color: #2d6a4f;
+    background: rgba(45, 106, 79, 0.1);
+    padding: 4px 10px;
+    border-radius: 8px;
+    letter-spacing: 0.05em;
+  }
+
+  .hiw-step-icon {
+    width: 42px;
+    height: 42px;
+    border-radius: 12px;
+    background: rgba(45, 106, 79, 0.08);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+  }
+
+  .hiw-step-card h4 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .hiw-step-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #55695c !important;
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+</style>
+
+<script id="how-it-works-dom">
+document.addEventListener("DOMContentLoaded", function() {
+  const hiwHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+    el.textContent.includes("From waste to intelligent action")
+  );
+
+  if (hiwHeading) {
+    let sec = hiwHeading.closest("section") || hiwHeading.closest(".container");
+    if (!sec) sec = hiwHeading.parentElement;
+
+    sec.innerHTML = `
+      <div class="container text-center">
+        <div class="hiw-badge-pill">HOW IT WORKS</div>
+        <h2 class="hiw-title">From waste to intelligent action.</h2>
+
+        <div class="hiw-steps-grid">
+          <div class="hiw-step-card">
+            <div class="hiw-top-row">
+              <span class="hiw-step-num">STEP 01</span>
+              <div class="hiw-step-icon"><i class="bi bi-camera-viewfinder"></i></div>
+            </div>
+            <h4>Waste Detection</h4>
+            <p>Sensors and optical units immediately detect incoming waste on the intake tray.</p>
+          </div>
+
+          <div class="hiw-step-card">
+            <div class="hiw-top-row">
+              <span class="hiw-step-num">STEP 02</span>
+              <div class="hiw-step-icon"><i class="bi bi-cpu"></i></div>
+            </div>
+            <h4>AI Classification</h4>
+            <p>Edge neural model categorizes the item into recyclable or dry categories in milliseconds.</p>
+          </div>
+
+          <div class="hiw-step-card">
+            <div class="hiw-top-row">
+              <span class="hiw-step-num">STEP 03</span>
+              <div class="hiw-step-icon"><i class="bi bi-robot"></i></div>
+            </div>
+            <h4>Smart Segregation</h4>
+            <p>180° micro-servo actuates the mechanical flipper to divert items into the target bin.</p>
+          </div>
+
+          <div class="hiw-step-card">
+            <div class="hiw-top-row">
+              <span class="hiw-step-num">STEP 04</span>
+              <div class="hiw-step-icon"><i class="bi bi-truck"></i></div>
+            </div>
+            <h4>Autonomous Transit</h4>
+            <p>Ultrasonic monitoring updates capacity and triggers autonomous rover routing.</p>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
