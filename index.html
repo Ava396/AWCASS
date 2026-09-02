@@ -3994,8 +3994,98 @@ document.addEventListener("DOMContentLoaded", function() {
   setTimeout(applyExactSiteCards, 400);
 });
 </script>
+<style id="key-benefits-exact-uniform">
+  /* 1. Purani hardcoded dark left border ko permanently kill karein */
+  div:has(> * > :contains("Better Segregation")),
+  div:has(> * > :contains("Automated Collection")),
+  div:has(> * > :contains("Deployable across campuses")),
+  div:has(> * > :contains("Safer Handling")),
+  div:has(> * > :contains("Future Ready")),
+  .key-benefit-card,
+  section:has(h3:contains("Key System Benefits")) .col > div,
+  section:has(h3:contains("Key System Benefits")) [class*="col-"] > div {
+    border-left: none !important;
+    border-top: none !important;
+    border-right: none !important;
+    border-bottom: none !important;
+  }
+
+  /* 2. Exact standard card structure jo Features & Hardware me hai */
+  .key-benefit-uniform-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 20px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04) !important;
+    transition: all 0.25s ease !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+  }
+
+  /* 3. Exact uniform hover lift & green border highlight */
+  .key-benefit-uniform-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 28px rgba(45, 106, 79, 0.12) !important;
+  }
+
+  .key-benefit-uniform-card h4,
+  .key-benefit-uniform-card h5 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.15rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin: 0 0 8px 0 !important;
+  }
+
+  .key-benefit-uniform-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #55695c !important;
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    margin: 0 !important;
+  }
+</style>
+
+<script id="key-benefits-exact-script">
+document.addEventListener("DOMContentLoaded", function() {
+  function fixKeyBenefitsCards() {
+    const titles = [
+      "Better Segregation",
+      "Automated Collection",
+      "Scalable",
+      "Safer Handling",
+      "Future Ready"
+    ];
+
+    titles.forEach(title => {
+      const match = Array.from(document.querySelectorAll("h4, h5, h6, strong, div, p")).find(el => 
+        el.textContent.trim() === title
+      );
+
+      if (match) {
+        let cardBox = match.closest(".col > div, [class*='col-'] > div, .card");
+        if (!cardBox) cardBox = match.parentElement;
+
+        if (cardBox) {
+          // Hardcoded inline styles and legacy left-border classes clear karein
+          cardBox.removeAttribute("style");
+          cardBox.className = "key-benefit-uniform-card";
+        }
+      }
+    });
+  }
+
+  fixKeyBenefitsCards();
+  setTimeout(fixKeyBenefitsCards, 300);
+});
+</script>
 </body>
 </html>
+
 
 
 
