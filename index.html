@@ -2467,8 +2467,207 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="hw-stack-polish-style">
+  /* 1. Navbar Stacking & Blur Fix (Fixes text bleed-through) */
+  nav, .navbar, header {
+    background-color: rgba(230, 238, 229, 0.92) !important;
+    backdrop-filter: blur(12px) !important;
+    -webkit-backdrop-filter: blur(12px) !important;
+    border-bottom: 1px solid rgba(45, 106, 79, 0.12) !important;
+    z-index: 1050 !important;
+  }
+
+  /* 2. Hardware Stack Container Box */
+  .hw-master-wrapper {
+    background: #ffffff;
+    border: 1.5px solid #d6e2d4;
+    border-radius: 32px;
+    padding: 60px 45px;
+    margin-top: 30px;
+    margin-bottom: 50px;
+    box-shadow: 0 10px 30px rgba(20, 33, 24, 0.03);
+  }
+
+  /* 3. Header & Pill Badge */
+  .hw-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .hw-badge-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  .hw-title {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 2.8rem !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    letter-spacing: -0.02em !important;
+    line-height: 1.15 !important;
+    margin-bottom: 14px !important;
+  }
+
+  .hw-subtitle {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #526658 !important;
+    font-size: 1.02rem !important;
+    max-width: 680px;
+    margin: 0 auto 40px auto !important;
+    line-height: 1.6 !important;
+  }
+
+  /* 4. Sub-cards Grid & Styling */
+  .hw-grid-layout {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 22px;
+  }
+  @media (max-width: 991px) {
+    .hw-grid-layout {
+      grid-template-columns: repeat(2, 1fr);
+    }
+  }
+  @media (max-width: 767px) {
+    .hw-grid-layout {
+      grid-template-columns: 1fr;
+    }
+    .hw-master-wrapper {
+      padding: 35px 20px;
+    }
+  }
+
+  .hw-box-card {
+    background: #f7faf6;
+    border: 1.5px solid #dce8db;
+    border-radius: 20px;
+    padding: 24px 22px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    text-align: left;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+  }
+  .hw-box-card:hover {
+    background: #ffffff;
+    border-color: #2d6a4f;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 22px rgba(45, 106, 79, 0.08);
+  }
+
+  .hw-subtag {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #2d6a4f;
+    margin-bottom: 10px;
+  }
+  .hw-subtag i {
+    font-size: 0.95rem;
+  }
+
+  .hw-box-card h5 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.2rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin-bottom: 8px !important;
+  }
+
+  .hw-box-card p {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.88rem !important;
+    line-height: 1.55 !important;
+    color: #55695c !important;
+    margin: 0 !important;
+  }
+</style>
+
+<script id="hw-stack-polish-script">
+document.addEventListener("DOMContentLoaded", function() {
+  const hwHeader = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+    el.textContent.includes("Core Technology & Hardware Stack")
+  );
+
+  if (hwHeader) {
+    let targetSection = hwHeader.closest("section") || hwHeader.closest(".container");
+    if (!targetSection) targetSection = hwHeader.parentElement;
+
+    targetSection.innerHTML = `
+      <div class="container">
+        <div class="hw-master-wrapper text-center">
+          <div class="hw-badge-pill">EMBEDDED HARDWARE & SENSORS</div>
+          <h2 class="hw-title">Core Technology & Hardware Stack</h2>
+          <p class="hw-subtitle">
+            Engineered with high-speed microcontrollers, precision servo actuators, optical intelligence, and low-noise power regulation.
+          </p>
+
+          <div class="hw-grid-layout">
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-cpu"></i> MICROCONTROLLER</div>
+              <h5>ESP32 Core Module</h5>
+              <p>Dual-core processing hub executing real-time sensor polling, Wi-Fi telemetry, and PWM motor coordination.</p>
+            </div>
+
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-camera"></i> VISION SYSTEM</div>
+              <h5>ESP32-CAM (AI Vision)</h5>
+              <p>OV2640 optical sensor capturing incoming waste images for localized inference and classification.</p>
+            </div>
+
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-code-slash"></i> FIRMWARE</div>
+              <h5>C++ / Embedded Code</h5>
+              <p>Optimized low-latency C++ firmware architecture for hardware-level interrupts, timers, and telemetry streaming.</p>
+            </div>
+
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-lightning-charge"></i> POWER REGULATION</div>
+              <h5>LM2596 Buck Converter</h5>
+              <p>Steps down high-capacity battery voltages to a steady, regulated 5V rail for jitter-free servo operation.</p>
+            </div>
+
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-gear-wide-connected"></i> ACTUATION SYSTEM</div>
+              <h5>Servo 180° & 360°</h5>
+              <p>180° servo controls chute tilt segregation, while 360° continuous servos drive automated intake conveyors.</p>
+            </div>
+
+            <div class="hw-box-card">
+              <div class="hw-subtag"><i class="bi bi-broadcast"></i> NAVIGATION & SENSING</div>
+              <h5>IR Line Sensors</h5>
+              <p>Infrared line follower sensor arrays providing line tracking for autonomous rover navigation and obstacle avoidance.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
