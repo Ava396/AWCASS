@@ -3624,8 +3624,59 @@ document.addEventListener("DOMContentLoaded", function() {
     color: #1a2e22 !important;
   }
 </style>
+<style id="eval-matrix-cards-forced-uniform">
+  /* Exact uniform card class */
+  .awcas-standard-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d8e5d6 !important;
+    border-radius: 22px !important;
+    padding: 28px 24px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.03) !important;
+    transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1) !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: space-between !important;
+  }
+
+  /* Exact hover effect identical to Smart Features */
+  .awcas-standard-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 26px rgba(45, 106, 79, 0.1) !important;
+  }
+</style>
+
+<script id="eval-matrix-cards-runtime">
+document.addEventListener("DOMContentLoaded", function() {
+  function applyUniformCards() {
+    // Desirability, Viability, Feasibility ke cards ko dynamically target karein
+    const targets = Array.from(document.querySelectorAll("h3, h4, h5, div, span")).filter(el => {
+      const txt = el.textContent.trim();
+      return txt === "Desirability" || txt === "Viability" || txt === "Feasibility";
+    });
+
+    targets.forEach(t => {
+      // Find its closest enclosing card container
+      let card = t.closest(".col-lg-4 > div, .col-md-4 > div, .card, div[style*='border']");
+      if (card) {
+        // Remove hardcoded border styles like the thick green one on Viability
+        card.style.border = "";
+        card.style.borderColor = "";
+        card.style.borderWidth = "";
+        card.style.outline = "";
+        card.classList.add("awcas-standard-card");
+      }
+    });
+  }
+
+  applyUniformCards();
+  setTimeout(applyUniformCards, 500);
+});
+</script>
 </body>
 </html>
+
 
 
 
