@@ -4358,8 +4358,41 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(applyBigCardEffect, 500);
 })();
 </script>
+<style id="keep-only-dark-footer">
+  /* 1. Upar wale light footer aur uske extra container ko completely gayab karein */
+  .awcas-footer-block,
+  div:has(> .footer-logo-title),
+  div:has(> p:contains("© 2026 AWCAS Project. All Rights Reserved.")):not(.awcas-clean-footer *) {
+    display: none !important;
+  }
+
+  /* 2. Niche wale dark green footer ko perfectly frame karein */
+  footer.awcas-clean-footer {
+    display: block !important;
+    background: #0f2419 !important;
+    color: #e2ede3 !important;
+    padding: 55px 0 35px 0 !important;
+    margin-top: 0px !important;
+    border-top: 3px solid #2d6a4f !important;
+    position: relative !important;
+    z-index: 20 !important;
+  }
+</style>
+
+<script id="clean-footer-nodes">
+document.addEventListener("DOMContentLoaded", function() {
+  // Purane light footer elements ko DOM se remove karein
+  document.querySelectorAll(".awcas-footer-block, .footer-logo-title").forEach(el => {
+    const parent = el.closest(".container, div");
+    if (parent && !parent.closest(".awcas-clean-footer")) {
+      el.remove();
+    }
+  });
+});
+</script>
 </body>
 </html>
+
 
 
 
