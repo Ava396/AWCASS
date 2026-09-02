@@ -3937,8 +3937,66 @@ document.addEventListener("DOMContentLoaded", function() {
   setInterval(attachDirectHoverShade, 600);
 })();
 </script>
+<style id="exact-card-border-line-style">
+  /* Purane sare extra shadows aur experimental styles reset */
+  #direct-dom-shade-engine { display: none !important; }
+
+  /* Exact Site-Wide Card Class - Jo Features aur Hardware me use ho rahi hai */
+  .awcas-exact-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 20px !important;
+    padding: 24px 20px !important;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04) !important;
+    transition: all 0.25s ease !important;
+    height: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    justify-content: flex-start !important;
+    box-sizing: border-box !important;
+  }
+
+  /* Exact Hover jo Smart Features & Stack me hai */
+  .awcas-exact-card:hover {
+    transform: translateY(-4px) !important;
+    border-color: #2d6a4f !important;
+    box-shadow: 0 12px 28px rgba(45, 106, 79, 0.12) !important;
+  }
+</style>
+
+<script id="exact-card-border-line-script">
+document.addEventListener("DOMContentLoaded", function() {
+  function applyExactSiteCards() {
+    const cardTitles = [
+      "Environmental", "Social Impact", "Economic", "Technological", "Community",
+      "Better Segregation", "Automated Collection", "Scalable", "Safer Handling", "Future Ready"
+    ];
+
+    cardTitles.forEach(title => {
+      const match = Array.from(document.querySelectorAll("h4, h5, h6, strong, div, p")).find(el => 
+        el.textContent.trim() === title
+      );
+
+      if (match) {
+        let cardBox = match.closest(".col > div, [class*='col-'] > div, .card");
+        if (!cardBox) cardBox = match.parentElement;
+
+        if (cardBox) {
+          // Hardcoded inline styles clear karo taaki clean border-line show ho
+          cardBox.removeAttribute("style");
+          cardBox.className = "awcas-exact-card";
+        }
+      }
+    });
+  }
+
+  applyExactSiteCards();
+  setTimeout(applyExactSiteCards, 400);
+});
+</script>
 </body>
 </html>
+
 
 
 
