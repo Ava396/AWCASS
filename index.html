@@ -2880,8 +2880,203 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="location-and-remove-crew-patch">
+  /* 1. Hide Crew section if rendered in HTML */
+  #crew, .crew-section, section:has(h2:contains("Our Crew Champions")) {
+    display: none !important;
+  }
+
+  /* 2. Modern Location Card & Layout */
+  .loc-section-wrapper {
+    padding: 70px 0 90px 0;
+    position: relative;
+    z-index: 2;
+  }
+
+  .loc-master-card {
+    background: #ffffff;
+    border: 1.5px solid #d4dfd2;
+    border-radius: 32px;
+    padding: 48px;
+    box-shadow: 0 10px 30px rgba(20, 33, 24, 0.04);
+  }
+
+  .loc-badge-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(45, 106, 79, 0.12);
+    color: #2d6a4f;
+    border: 1px solid rgba(45, 106, 79, 0.22);
+    padding: 6px 16px;
+    border-radius: 50px;
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    font-size: 0.74rem !important;
+    font-weight: 700 !important;
+    letter-spacing: 0.09em !important;
+    text-transform: uppercase;
+    margin-bottom: 18px;
+  }
+  .loc-badge-pill::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: #2d6a4f;
+    display: inline-block;
+  }
+
+  .loc-title {
+    font-family: 'Newsreader', Georgia, serif !important;
+    font-size: 2.8rem !important;
+    line-height: 1.15 !important;
+    font-weight: 600 !important;
+    color: #142118 !important;
+    letter-spacing: -0.02em !important;
+    margin-bottom: 16px !important;
+  }
+
+  .loc-desc {
+    font-family: 'Plus Jakarta Sans', sans-serif !important;
+    color: #526658 !important;
+    font-size: 1.02rem !important;
+    line-height: 1.6 !important;
+    margin-bottom: 32px !important;
+  }
+
+  .loc-contact-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 16px;
+    margin-bottom: 22px;
+  }
+
+  .loc-contact-icon {
+    width: 44px;
+    height: 44px;
+    border-radius: 12px;
+    background: rgba(45, 106, 79, 0.1);
+    color: #2d6a4f;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.25rem;
+    flex-shrink: 0;
+  }
+
+  .loc-contact-item h6 {
+    font-family: 'Outfit', sans-serif !important;
+    font-weight: 700;
+    font-size: 1rem;
+    color: #142118;
+    margin: 0 0 4px 0;
+  }
+
+  .loc-contact-item p {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #55695c;
+    line-height: 1.5;
+  }
+
+  .loc-map-frame-box {
+    border-radius: 24px;
+    overflow: hidden;
+    border: 2px solid #d4dfd2;
+    height: 100%;
+    min-height: 380px;
+    box-shadow: 0 4px 16px rgba(20, 33, 24, 0.04);
+  }
+</style>
+
+<script id="location-and-crew-script">
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Remove Navbar "Crew" Link
+  document.querySelectorAll("nav a, .navbar-nav a").forEach(link => {
+    if (link.textContent.trim().toLowerCase() === "crew") {
+      const parentLi = link.closest("li");
+      if (parentLi) parentLi.remove();
+      else link.remove();
+    }
+  });
+
+  // 2. Remove "Our Crew Champions" DOM Element entirely
+  const crewTitle = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+    el.textContent.includes("Our Crew Champions")
+  );
+  if (crewTitle) {
+    const crewSection = crewTitle.closest("section") || crewTitle.closest(".container");
+    if (crewSection) crewSection.remove();
+  }
+
+  // 3. Update Location Section with Clean Architecture
+  const locTitle = Array.from(document.querySelectorAll("h2, h3")).find(el => 
+    el.textContent.includes("Find our SmartWaste Crew") || el.textContent.includes("Find our")
+  );
+
+  if (locTitle) {
+    let locSec = locTitle.closest("section") || locTitle.closest(".container");
+    if (!locSec) locSec = locTitle.parentElement;
+
+    locSec.innerHTML = `
+      <div class="container loc-section-wrapper">
+        <div class="loc-master-card">
+          <div class="row g-5 align-items-center">
+            <div class="col-lg-5 text-start">
+              <div class="loc-badge-pill">OUR LOCATION</div>
+              <h2 class="loc-title">Find our AWCAS Team.</h2>
+              <p class="loc-desc">
+                Visit and connect with the project engineers developing autonomous edge robotics and intelligent IoT waste infrastructure.
+              </p>
+
+              <div class="loc-contact-item">
+                <div class="loc-contact-icon"><i class="bi bi-geo-alt-fill"></i></div>
+                <div>
+                  <h6>Research & Development Hub</h6>
+                  <p>ITER, Siksha 'O' Anusandhan (SOA) University<br>Bhubaneswar, Odisha, India</p>
+                </div>
+              </div>
+
+              <div class="loc-contact-item">
+                <div class="loc-contact-icon"><i class="bi bi-envelope-fill"></i></div>
+                <div>
+                  <h6>Project Inquiries</h6>
+                  <p>awcas.robotics@gmail.com</p>
+                </div>
+              </div>
+
+              <div class="loc-contact-item">
+                <div class="loc-contact-icon"><i class="bi bi-cpu-fill"></i></div>
+                <div>
+                  <h6>System Status</h6>
+                  <p>AWCAS Hardware Rover Prototype Active</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="col-lg-7">
+              <div class="loc-map-frame-box">
+                <iframe 
+                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3742.7937320499347!2d85.79720497592472!3d20.26743901350672!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a19a793a388e635%3A0x6b4cf882b5f7e71!2sITER%2C%20Siksha%20&#39;O&#39;%20Anusandhan!5e0!3m2!1sen!2sin!4v1709400000000!5m2!1sen!2sin" 
+                  width="100%" 
+                  height="100%" 
+                  style="border:0; min-height: 400px; display:block;" 
+                  allowfullscreen="" 
+                  loading="lazy" 
+                  referrerpolicy="no-referrer-when-downgrade">
+                </iframe>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
