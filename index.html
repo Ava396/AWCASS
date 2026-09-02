@@ -5249,8 +5249,34 @@ document.addEventListener("DOMContentLoaded", function() {
   .st-pos-3 { top: 34%;  right: -15px; animation-delay: 1.8s !important; }
   .st-pos-5 { top: 64%;  right: -8px;  animation-delay: 3.0s !important; }
 </style>
+<style id="remove-sih-badge-style">
+  .sih-official-badge,
+  div:has(> .sih-badge-pill),
+  div:has(> span:contains("SIH 2026")),
+  span:contains("Smart India Hackathon Proposal") {
+    display: none !important;
+  }
+</style>
+
+<script id="remove-sih-badge-script">
+(function() {
+  function purgeSihBadge() {
+    document.querySelectorAll(".sih-official-badge, .sih-badge-pill").forEach(el => {
+      let target = el.closest(".sih-official-badge") || el;
+      target.remove();
+    });
+  }
+  if (document.readyState === "loading") {
+    document.addEventListener("DOMContentLoaded", purgeSihBadge);
+  } else {
+    purgeSihBadge();
+  }
+  setTimeout(purgeSihBadge, 300);
+})();
+</script>
 </body>
 </html>
+
 
 
 
