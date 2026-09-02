@@ -2091,8 +2091,204 @@ document.addEventListener("DOMContentLoaded", function() {
   }
 });
 </script>
+<style id="features-and-stack-patch">
+  /* Section Spacing & Structure */
+  section {
+    position: relative;
+    z-index: 1;
+    overflow: visible !important;
+  }
+
+  /* Fix floating pill overflow */
+  .about-highlights-list, .about-pill-item {
+    position: static !important;
+    transform: none !important;
+  }
+
+  /* 4-Column Smart Features */
+  .feature-clean-card {
+    background: #ffffff !important;
+    border: 1.5px solid #d4dfd2 !important;
+    border-radius: 24px !important;
+    padding: 32px 24px !important;
+    height: 100% !important;
+    box-shadow: 0 4px 20px rgba(20, 33, 24, 0.04) !important;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+  }
+  .feature-clean-card .card-icon-box {
+    width: 52px !important;
+    height: 52px !important;
+    border-radius: 16px !important;
+    background: rgba(45, 106, 79, 0.1) !important;
+    color: #2d6a4f !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.5rem !important;
+    margin-bottom: 20px !important;
+  }
+  .feature-clean-card h4 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.25rem !important;
+    font-weight: 700 !important;
+    color: #142118 !important;
+    margin-bottom: 10px !important;
+  }
+  .feature-clean-card p {
+    color: #55695c !important;
+    font-size: 0.93rem !important;
+    line-height: 1.6 !important;
+    margin: 0 !important;
+  }
+
+  /* Hardware Stack Cards Grid */
+  .hw-card-tile {
+    background: #ffffff;
+    border: 1.5px solid #d8e3d6;
+    border-radius: 20px;
+    padding: 24px 22px;
+    height: 100%;
+    box-shadow: 0 4px 14px rgba(20, 33, 24, 0.03);
+    transition: transform 0.2s ease;
+  }
+  .hw-card-tile:hover {
+    transform: translateY(-3px);
+    border-color: #2d6a4f;
+  }
+  .hw-card-tile .hw-tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: #2d6a4f;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    margin-bottom: 8px;
+  }
+  .hw-card-tile h5 {
+    font-family: 'Outfit', sans-serif !important;
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: #142118;
+    margin-bottom: 8px;
+  }
+  .hw-card-tile p {
+    color: #55695c;
+    font-size: 0.88rem;
+    line-height: 1.55;
+    margin: 0;
+  }
+</style>
+
+<script id="features-and-stack-dom">
+document.addEventListener("DOMContentLoaded", function() {
+  // 1. Clean Smart Features Section
+  const featHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => el.textContent.includes("Technology that makes waste smarter"));
+  if (featHeading) {
+    const sec = featHeading.closest("section") || featHeading.closest(".container").parentElement;
+    const cardsRow = sec.querySelector(".row:last-child, .row.g-4, .row.mt-4, .row.g-3");
+    if (cardsRow) {
+      cardsRow.innerHTML = `
+        <div class="col-12 col-md-6 col-lg-3 d-flex">
+          <div class="feature-clean-card w-100">
+            <div class="card-icon-box"><i class="bi bi-eye"></i></div>
+            <h4>AI Waste Detection</h4>
+            <p>Identifies and classifies waste materials instantaneously using lightweight neural edge models.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 d-flex">
+          <div class="feature-clean-card w-100">
+            <div class="card-icon-box"><i class="bi bi-wifi"></i></div>
+            <h4>IoT Monitoring</h4>
+            <p>Monitors ultrasonic bin levels and tracks telemetry in real time via ESP32 Wi-Fi architecture.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 d-flex">
+          <div class="feature-clean-card w-100">
+            <div class="card-icon-box"><i class="bi bi-robot"></i></div>
+            <h4>Auto Segregation</h4>
+            <p>Dual micro-servos rotate the classification trapdoor to guide items into discrete segregated compartments.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-6 col-lg-3 d-flex">
+          <div class="feature-clean-card w-100">
+            <div class="card-icon-box"><i class="bi bi-graph-up-arrow"></i></div>
+            <h4>Data Analytics</h4>
+            <p>Provides actionable insights on collection efficiency, weight metrics, and segregation precision.</p>
+          </div>
+        </div>
+      `;
+    }
+  }
+
+  // 2. Clean Core Hardware Stack Grid (6 structured cards)
+  const hwHeading = Array.from(document.querySelectorAll("h2, h3")).find(el => el.textContent.includes("Core Technology & Hardware Stack"));
+  if (hwHeading) {
+    const hwSec = hwHeading.closest("section") || hwHeading.closest(".container").parentElement;
+    const hwContainer = hwSec.querySelector(".container") || hwSec;
+    const existingRow = hwContainer.querySelector(".row:last-child, .row.mt-4, .row.g-4");
+    
+    const newHardwareHTML = `
+      <div class="row g-4 mt-2">
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-cpu"></i> MICROCONTROLLER</div>
+            <h5>ESP32 Core Module</h5>
+            <p>Dual-core processing hub executing real-time sensor polling, Wi-Fi telemetry, and PWM motor coordination.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-camera"></i> VISION SYSTEM</div>
+            <h5>ESP32-CAM (AI Vision)</h5>
+            <p>OV2640 optical sensor capturing incoming waste images for localized inference and classification.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-code-slash"></i> FIRMWARE</div>
+            <h5>C++ / Embedded Code</h5>
+            <p>Optimized low-latency C++ firmware architecture for hardware interrupts, timers, and telemetry streaming.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-lightning-charge"></i> POWER REGULATION</div>
+            <h5>LM2596 Buck Converter</h5>
+            <p>Steps down high-capacity battery voltages to a steady, regulated 5V rail for jitter-free servo operation.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-gear-wide-connected"></i> ACTUATION SYSTEM</div>
+            <h5>Servo 180° & 360°</h5>
+            <p>180° servo controls chute tilt segregation, while 360° continuous servos drive automated intake conveyors.</p>
+          </div>
+        </div>
+        <div class="col-12 col-md-4">
+          <div class="hw-card-tile">
+            <div class="hw-tag"><i class="bi bi-broadcast"></i> NAVIGATION & SENSING</div>
+            <h5>IR Line Sensors</h5>
+            <p>Infrared line follower sensor arrays providing line tracking for autonomous rover navigation and obstacle avoidance.</p>
+          </div>
+        </div>
+      </div>
+    `;
+
+    if (existingRow) {
+      existingRow.outerHTML = newHardwareHTML;
+    } else {
+      hwContainer.insertAdjacentHTML('beforeend', newHardwareHTML);
+    }
+  }
+});
+</script>
 </body>
 </html>
+
 
 
 
