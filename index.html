@@ -4484,8 +4484,48 @@ document.addEventListener("DOMContentLoaded", function() {
   });
 });
 </script>
+<script id="awcas-custom-logo-engine">
+(function() {
+  // Pure vector SVG emblem for AWCAS: Infinity/Recycle loop with AI sensor core
+  const awcasLogoSvg = `
+    <svg class="awcas-brand-emblem" width="34" height="34" viewBox="0 0 48 48" fill="none" xmlns="http://www.w3.org/2000/svg" style="vertical-align: middle; margin-right: 8px;">
+      <defs>
+        <linearGradient id="awcasGrad" x1="4" y1="4" x2="44" y2="44" gradientUnits="userSpaceOnUse">
+          <stop stop-color="#52b788"/>
+          <stop offset="0.5" stop-color="#25a244"/>
+          <stop offset="1" stop-color="#1b4332"/>
+        </linearGradient>
+      </defs>
+      <!-- Outer Geometric Triangular Recycling Loop -->
+      <path d="M24 6L39 15V33L24 42L9 33V15L24 6Z" stroke="url(#awcasGrad)" stroke-width="3" stroke-linejoin="round" stroke-linecap="round" opacity="0.4"/>
+      <!-- Inner Dynamic Tech Segregation Arc -->
+      <path d="M24 10L36 17V31L24 38L12 31V17L24 10Z" stroke="url(#awcasGrad)" stroke-width="3.5" stroke-linejoin="round" stroke-dasharray="8 4"/>
+      <!-- Central AI Vision / Node -->
+      <circle cx="24" cy="24" r="5" fill="#52b788"/>
+      <circle cx="24" cy="24" r="8" stroke="#52b788" stroke-width="1.5" opacity="0.6"/>
+    </svg>
+  `;
+
+  function applyBrandLogo() {
+    // 1. Top Navbar Brand
+    document.querySelectorAll(".navbar-brand, nav a[href*='index']").forEach(brand => {
+      brand.innerHTML = `${awcasLogoSvg}<span style="font-family: 'Outfit', sans-serif; font-weight: 800; letter-spacing: -0.02em; color: #ffffff;">AWCAS</span>`;
+    });
+
+    // 2. Footer Brand
+    const footerBrand = document.querySelector(".footer-brand-title");
+    if (footerBrand) {
+      footerBrand.innerHTML = `${awcasLogoSvg}<span style="font-family: 'Outfit', sans-serif; font-weight: 800; color: #ffffff;">AWCAS</span>`;
+    }
+  }
+
+  window.addEventListener("DOMContentLoaded", applyBrandLogo);
+  setInterval(applyBrandLogo, 600);
+})();
+</script>
 </body>
 </html>
+
 
 
 
