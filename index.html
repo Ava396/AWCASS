@@ -5306,8 +5306,42 @@ document.addEventListener("DOMContentLoaded", function() {
     padding-top: 45px !important;
   }
 </style>
+<style id="pull-insights-super-close">
+  /* Specs row ke bottom margin ko reduce karein */
+  .hero-section .d-flex:has(i, [class*="bi-"]),
+  div:has(> span:contains("ESP32 Controller")),
+  div:has(> *:contains("Dual Servo Array")) {
+    margin-bottom: 2px !important;
+    padding-bottom: 0px !important;
+  }
+
+  /* Teeno Cards ko specs ke theek paas upar pull karein */
+  .hero-slide-insights {
+    margin-top: 6px !important;
+    margin-bottom: 20px !important;
+    position: relative !important;
+    z-index: 10 !important;
+  }
+
+  /* Card padding ko aur sleek banayein */
+  .slide-insight-card {
+    padding: 10px 14px !important;
+    background: #ffffff !important;
+  }
+
+  .slide-insight-card .insight-title {
+    font-size: 0.88rem !important;
+    margin-bottom: 2px !important;
+  }
+
+  .slide-insight-card .insight-desc {
+    font-size: 0.76rem !important;
+    line-height: 1.3 !important;
+  }
+</style>
 </body>
 </html>
+
 
 
 
